@@ -1,0 +1,53 @@
+version:
+checks:
+  arguments-count:
+    enable: true
+    config:
+      threshold: 5
+  complex-logic:
+    enable: true
+    config:
+      thresold: 4
+  file-lines:
+    enable: true
+    config: 
+      thresold: 250
+  method-complexity:
+    enable: true
+    config:
+      thresold: 15
+  method-count:
+    enable: true
+    config:
+      thresold: 20
+  method-lines:
+    enable: true
+    config: 
+      thresold: 30
+  nested-control-flow:
+    enable: true
+    config: 
+      thresold: 4
+  return-statements:
+    enable: true
+    config: 
+      thresold: 4
+  similar-code:
+    enable: true
+    config: 
+      thresold: #language-specific defaults. overrides affect all languages.
+  identical-code:
+    enable: true
+    config: 
+      thresold: #language-specific defaults. overrides affect all languages.
+
+exclude-patterns:
+- "config/"
+- "db/"
+- "dist/"
+- "features/"
+- "venv/"
+- "**/tests/"
+- "**/vendor/"
+- "**/*_test.go"
+- "**/*.d.ts"
