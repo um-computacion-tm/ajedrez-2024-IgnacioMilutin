@@ -18,7 +18,7 @@ def play(chess):
                 to_col)
     
     except Exception as e:
-        print('Error')
+        print('Error',e)
 
 
 if __name__=='__main__':

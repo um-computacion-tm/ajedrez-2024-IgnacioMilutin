@@ -9,7 +9,11 @@ class Chess:
         self.change_turn()
         piece=self.board.get_piece(from_row,from_col)
         self.change_turn()
+    
+    def turn(self):
+        return self.__turn__
+    
     def change_turn(self):
         if self.__turn__=='WHITE':
-            self.__turn__='Black'
+            self.__turn__='BLACK'
         else: self.__turn__='WHITE'
