@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.7] - 2024-08-20
+
+### Added
+
+- Created test for cli,including 1 fro good input entry, 2 bad input entry and an invalid move
+- Class for invalid move (in cli)
+- Str method in board for printing the board
+- Str method for rook in pieces for printing the rooks
+
+### Known Issues
+
+- To put test in test folder, import issue
+
 ## [0.0.6] - 2024-08-19
 
 ### Changed

@@ -5,7 +5,7 @@ class TestChess(unittest.TestCase):
     def setUp(self):
         self.chess=Chess()
         
-    def test_turno_inicial(self):
+    def test_first_turn(self):
         self.assertEqual(self.chess.turn(),'WHITE')
 
     def test_change_turn_white_to_black(self):
