@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.8] - 2024-08-23
+
+### Added
+
+- Created new test for other wrong input entrys in cli
+
+### Changed
+
+- Deleted de name attribute for pieces
+- Corrected test for rook defintion where a name was asked
+
 ## [0.0.7] - 2024-08-20
 
 ### Added

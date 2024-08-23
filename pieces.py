@@ -1,11 +1,10 @@
 class Piece:
-    def __init__(self,color,name):
+    def __init__(self,color):
         self.__color__=color
-        self.__name__=name
 
 class Rook(Piece):
-    def __init__(self,color,name):
-        super().__init__(color,name)
+    def __init__(self,color):
+        super().__init__(color)
 
     def __str__(self):
         if self.__color__ == "WHITE":
