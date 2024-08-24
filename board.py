@@ -1,4 +1,4 @@
-from pieces import Rook
+from pieces import Rook, Pawn
 
 class Board:
     def __init__(self):
@@ -12,7 +12,22 @@ class Board:
         self.__positions__[0][7]=Rook('BLACK')
         self.__positions__[7][7]=Rook('WHITE')
         self.__positions__[7][0]=Rook('WHITE')
-    
+        self.__positions__[6][0]=Pawn('WHITE')
+        self.__positions__[6][1]=Pawn('WHITE')
+        self.__positions__[6][2]=Pawn('WHITE')
+        self.__positions__[6][3]=Pawn('WHITE')
+        self.__positions__[6][4]=Pawn('WHITE')
+        self.__positions__[6][5]=Pawn('WHITE')
+        self.__positions__[6][6]=Pawn('WHITE')
+        self.__positions__[6][7]=Pawn('WHITE')
+        self.__positions__[1][0]=Pawn('BLACK')
+        self.__positions__[1][1]=Pawn('BLACK')
+        self.__positions__[1][2]=Pawn('BLACK')
+        self.__positions__[1][3]=Pawn('BLACK')
+        self.__positions__[1][4]=Pawn('BLACK')
+        self.__positions__[1][5]=Pawn('BLACK')
+        self.__positions__[1][6]=Pawn('BLACK')
+        self.__positions__[1][7]=Pawn('BLACK')
     def show_borad(self):
         pass
     
