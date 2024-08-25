@@ -1,6 +1,6 @@
 import unittest
 from board import Board
-from pieces import Rook
+from pieces import Rook, Pawn
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
@@ -12,12 +12,12 @@ class TestBoard(unittest.TestCase):
             str(board),
             (
                 "♖      ♖\n"
+                "♙♙♙♙♙♙♙♙\n"
                 "        \n"
                 "        \n"
                 "        \n"
                 "        \n"
-                "        \n"
-                "        \n"
+                "♟♟♟♟♟♟♟♟\n"
                 "♜      ♜\n"
             )
         )
@@ -35,6 +35,40 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(self.board.get_piece(7,0).__color__,'WHITE')
         self.assertIsInstance(self.board.get_piece(7,7),Rook)
         self.assertEqual(self.board.get_piece(7,7).__color__,'WHITE')
+
+    def test_pawns_creation(self):
+        self.assertIsInstance(self.board.get_piece(1,0),Pawn)
+        self.assertEqual(self.board.get_piece(1,0).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,1),Pawn)
+        self.assertEqual(self.board.get_piece(1,1).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,2),Pawn)
+        self.assertEqual(self.board.get_piece(1,2).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,3),Pawn)
+        self.assertEqual(self.board.get_piece(1,3).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,4),Pawn)
+        self.assertEqual(self.board.get_piece(1,4).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,5),Pawn)
+        self.assertEqual(self.board.get_piece(1,5).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,6),Pawn)
+        self.assertEqual(self.board.get_piece(1,6).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(1,7),Pawn)
+        self.assertEqual(self.board.get_piece(1,7).__color__,'BLACK')
+        self.assertIsInstance(self.board.get_piece(6,0),Pawn)
+        self.assertEqual(self.board.get_piece(6,0).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,1),Pawn)
+        self.assertEqual(self.board.get_piece(6,1).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,2),Pawn)
+        self.assertEqual(self.board.get_piece(6,2).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,3),Pawn)
+        self.assertEqual(self.board.get_piece(6,3).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,4),Pawn)
+        self.assertEqual(self.board.get_piece(6,4).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,5),Pawn)
+        self.assertEqual(self.board.get_piece(6,5).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,6),Pawn)
+        self.assertEqual(self.board.get_piece(6,6).__color__,'WHITE')
+        self.assertIsInstance(self.board.get_piece(6,7),Pawn)
+        self.assertEqual(self.board.get_piece(6,7).__color__,'WHITE')
 
     def test_empty_spaces(self):
         self.assertIsNone(self.board.get_piece(2,0))

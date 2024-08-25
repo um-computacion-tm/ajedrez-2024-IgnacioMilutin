@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.10] - 2024-08-25
+
+### Added
+
+- Test for pawn creation in the board
+
+### Changed
+
+- Include de pawns in the board print
+
 ## [0.0.9] - 2024-08-24
 
 ### Added
