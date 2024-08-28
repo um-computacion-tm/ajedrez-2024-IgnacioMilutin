@@ -1,4 +1,5 @@
 from board import Board
+from exceptions import InvalidMove
 
 class Chess:
     def __init__(self):
@@ -11,8 +12,8 @@ class Chess:
     def move(self,from_row,from_col,to_row,to_col):
         self.change_turn()
         piece=self.__board__.get_piece(from_row,from_col)
-        #if piece.valid_positions(from_row,from_col,to_row,to_col):
-       #     raise
+        if piece.valid_positions(from_row,from_col,to_row,to_col):
+            raise InvalidMove()
         self.change_turn()
     
     def turn(self):

@@ -1,7 +1,6 @@
 from chess import Chess
+from exceptions import InvalidMove
 
-class InvalidMove(Exception):
-    pass
 
 def main():
     chess=Chess()

@@ -48,4 +48,5 @@ class Board:
     def get_piece(self,row,col):
         return self.__positions__[row][col]
     
-    
+    def set_piece(self, row, col, piece):
+        self.__positions__[row][col] = piece
