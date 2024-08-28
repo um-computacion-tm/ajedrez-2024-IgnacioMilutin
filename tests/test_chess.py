@@ -16,3 +16,7 @@ class TestChess(unittest.TestCase):
         self.chess.__turn__='BLACK'
         self.chess.change_turn()
         self.assertEqual(self.chess.turn(),'WHITE')
+
+
+if __name__=='__main__':
+    unittest.main()

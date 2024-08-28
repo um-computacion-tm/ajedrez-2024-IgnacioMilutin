@@ -103,3 +103,6 @@ class TestBoard(unittest.TestCase):
         self.assertIsNone(self.board.get_piece(5,5))
         self.assertIsNone(self.board.get_piece(5,6))
         self.assertIsNone(self.board.get_piece(5,7))
+
+if __name__=='__main__':
+    unittest.main()

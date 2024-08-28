@@ -11,6 +11,8 @@ class Chess:
     def move(self,from_row,from_col,to_row,to_col):
         self.change_turn()
         piece=self.__board__.get_piece(from_row,from_col)
+        #if piece.valid_positions(from_row,from_col,to_row,to_col):
+       #     raise
         self.change_turn()
     
     def turn(self):
