@@ -27,7 +27,7 @@ class TestRook(unittest.TestCase):
         board = Board()
         board.__positions__[5][1]=None
         board.__positions__[6][1]=Pawn("BLACK", board)
-        rook = Rook("WHITE", board)
+        rook = Rook("BLACK", board)
         board.set_piece(4, 1, rook)
         possibles = rook.possible_positions_vd(4, 1)
         self.assertEqual(
