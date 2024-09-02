@@ -1,6 +1,7 @@
 import unittest
 from board import Board
-from pieces import Rook, Pawn
+from pieces import Pawn
+from rook import Rook
 
 class TestBoard(unittest.TestCase):
     def setUp(self):

@@ -1,4 +1,5 @@
-from pieces import Rook, Pawn
+from pieces import Pawn
+from rook import Rook
 
 class Board:
     def __init__(self):
