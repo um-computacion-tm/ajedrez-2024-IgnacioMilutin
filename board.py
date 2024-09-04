@@ -1,17 +1,17 @@
 from pieces import Pawn
 from rook import Rook
-
+from exceptions import OutOfBoard
 class Board:
-    def __init__(self):
+    def __init__(self,for_test = False):
         self.__positions__=[]
         for _ in range(8):
             col=[]
             for _ in range(8):
                 col.append(None)
             self.__positions__.append(col)
-
-        self.rook_board_definition()
-        self.pawn_boards_definition()
+        if not for_test:
+            self.rook_board_definition()
+            self.pawn_boards_definition()
         
     def show_board(self):
         pass
@@ -28,6 +28,8 @@ class Board:
         return board_str
 
     def get_piece(self,row,col):
+        if not (0 <= row < 8 or 0 <= col < 8):
+            raise OutOfBoard()
         return self.__positions__[row][col]
     
     def set_piece(self, row, col, piece):
@@ -56,3 +58,8 @@ class Board:
         self.__positions__[1][5]=Pawn('BLACK',self)
         self.__positions__[1][6]=Pawn('BLACK',self)
         self.__positions__[1][7]=Pawn('BLACK',self)
+    
+    def move(self,from_row,from_col,to_row,to_col):
+        origin=self.get_piece(from_row,from_col)
+        self.set_piece(to_row,to_col,origin)
+        self.set_piece(from_row,from_col,None)

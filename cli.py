@@ -21,12 +21,10 @@ def play(chess):
                 to_row,
                 to_col)
         
-    except InvalidMove as E:
-        print('Su movimiento es invalido')
-
+    except InvalidMove as e:
+        print(e)
     except Exception as e:
-        print('Error',e)
-
+        print("error", e)
 
 if __name__=='__main__':
     main()

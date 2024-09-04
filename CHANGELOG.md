@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.17] -2024-09-03
+
+### Added
+
+- Add move method to board
+- Test for rook not to move in diagonal descendant
+- Test for board move
+- messages to exceptions
+- get_color method for piece
+- test atribute to board to spwn an empty board 
+- test for board getting cell out of the board
+
+### Changed
+
+- improved the get_piece method in board for not getting so it doesnt pick a cell ouside the board
+- correct exceptions in code to throw the message
+- Move from chess class now have conditions fro turn and empty positions
+
 ## [0.0.16] - 2024-09-02
 
 ### Changed
