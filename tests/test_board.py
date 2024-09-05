@@ -2,7 +2,7 @@ import unittest
 from board import Board
 from pieces import Pawn
 from rook import Rook
-from exceptions import OutOfBoard
+from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 
 class TestBoard(unittest.TestCase):
     def test_str_board(self):
@@ -26,13 +26,31 @@ class TestBoard(unittest.TestCase):
         self.assertIsInstance(board.get_piece(0,0),Rook)
         self.assertIsNone(board.get_piece(2,0))
 
-    def test_get_piece_out_of_range(self):
+    def test_get_piece_out_of_range_row_and_col(self):
         board = Board(for_test=True)
         with self.assertRaises(OutOfBoard) as exc:
             board.get_piece(10, 10)
         self.assertEqual(
             exc.exception.message,
             "La posicion indicada se encuentra fuera del tablero"
+        )
+
+    def test_get_piece_out_of_range_row(self):
+        board = Board(for_test=True)
+        with self.assertRaises(RowOutOfBoard) as exc:
+            board.get_piece(10, 0)
+        self.assertEqual(
+            exc.exception.message,
+            "La Fila indicada se encuentra fuera del tablero"
+        )
+
+    def test_get_piece_out_of_range_col(self):
+        board = Board(for_test=True)
+        with self.assertRaises(ColumnOutOfBoard) as exc:
+            board.get_piece(0, 10)
+        self.assertEqual(
+            exc.exception.message,
+            "La Columna indicada se encuentra fuera del tablero"
         )
 
     def test_set_piece_in_range(self):
@@ -42,7 +60,7 @@ class TestBoard(unittest.TestCase):
         board.set_piece(0,0,rook)
         self.assertIsInstance(board.get_piece(0,0),Rook)
 
-    def test_set_piece_out_of_range(self):
+    def test_set_piece_out_of_range_row_and_col(self):
         board=Board(for_test=True)
         rook=Rook('BLACK',board)
         with self.assertRaises(OutOfBoard) as exc:
@@ -50,6 +68,26 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(
             exc.exception.message,
             "La posicion indicada se encuentra fuera del tablero"
+        )
+
+    def test_set_piece_out_of_range_row(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        with self.assertRaises(RowOutOfBoard) as exc:
+            board.set_piece(10, 0,rook)
+        self.assertEqual(
+            exc.exception.message,
+            "La Fila indicada se encuentra fuera del tablero"
+        )
+    
+    def test_set_piece_out_of_range_col(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        with self.assertRaises(ColumnOutOfBoard) as exc:
+            board.set_piece(0, 10,rook)
+        self.assertEqual(
+            exc.exception.message,
+            "La Columna indicada se encuentra fuera del tablero"
         )
 
     def test_rooks_creation(self):

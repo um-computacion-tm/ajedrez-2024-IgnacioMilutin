@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.19] - 2024-09-05
+
+### Added
+
+- ColumnOutOfRange and RowOutOfRange exceptions
+- Tests for each specific mistake for get_piece and set_piece
+
+### Changed
+
+- Get_piece and set_piece now drops an specific exception if it the row, the column or both which failes
+
 ## [0.0.18] - 2024-09-04
 
 ### Added

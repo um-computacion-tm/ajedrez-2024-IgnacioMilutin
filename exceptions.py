@@ -14,3 +14,9 @@ class InvalidMoveRookMove(InvalidMove):
 
 class OutOfBoard(InvalidMove):
     message = "La posicion indicada se encuentra fuera del tablero"
+
+class RowOutOfBoard(OutOfBoard):
+    message='La Fila indicada se encuentra fuera del tablero'
+
+class ColumnOutOfBoard(OutOfBoard):
+    message='La Columna indicada se encuentra fuera del tablero'
