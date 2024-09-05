@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.17] -2024-09-03
+## [0.0.18] - 2024-09-04
+
+### Added
+
+- tests for set piece, in and out of range of board
+
+### Changed
+
+- restructure board tests, deleting the board setup
+- set_piece has now condition for not setting out of board range
+
+## [0.0.17] - 2024-09-03
 
 ### Added
 

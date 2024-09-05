@@ -33,6 +33,8 @@ class Board:
         return self.__positions__[row][col]
     
     def set_piece(self, row, col, piece):
+        if not (0 <= row < 8 or 0 <= col < 8):
+            raise OutOfBoard()
         self.__positions__[row][col] = piece
 
     def rook_board_definition(self):
