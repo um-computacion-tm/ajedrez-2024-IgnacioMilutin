@@ -4,7 +4,9 @@ from chess import Chess
 class TestChess(unittest.TestCase):
     def setUp(self):
         self.chess=Chess()
-        
+    
+    # TURNS TEST
+
     def test_first_turn(self):
         self.assertEqual(self.chess.turn(),'WHITE')
 

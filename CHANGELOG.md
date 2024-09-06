@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.20] - 2024-09-06
+
+### Added
+
+- Tests for rook vertical asc with own and enemy piece in the middle
+- Description in tests 
+
+### Changed
+
+- Vertical asc now detects other pieces
+- Restructure rook movement tests with an empty board (for_test=True atribute)
+
 ## [0.0.19] - 2024-09-05
 
 ### Added

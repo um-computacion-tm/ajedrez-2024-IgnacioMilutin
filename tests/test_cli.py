@@ -4,6 +4,9 @@ from cli import play, InvalidMove
 from chess import Chess
 
 class TestCli(unittest.TestCase):
+
+    # USER INPUTS FOR MOVING FROM ROW,COL TO ROW,COL
+
     @patch('builtins.input',side_effect=['1','1','2','2'])
     @patch('builtins.print')
     @patch.object(Chess,'move')

@@ -9,44 +9,64 @@ class TestRook(unittest.TestCase):
         rook=Rook('WHITE',board)
         self.assertEqual(str(rook),'♜')
 
-    def test_move_vertical_desc(self):
-        board=Board()
-        board.__positions__[5][1]=None
-        board.__positions__[6][1]=None
-        board.__positions__[7][1]=None
-        rook=Rook('WHITE',board)
-        possibles=rook.possible_positions_vd(4,1)
-        self.assertEqual(possibles,[(5,1),(6,1),(7,1)])
+    #VERTICAL DESCENDANT:
 
-    def test_move_vertical_asc(self):
-        board=Board()
+    def test_move_vertical_desc(self):
+        board=Board(for_test=True)
         rook=Rook('WHITE',board)
-        possibles=rook.possible_positions_va(4,1)
-        self.assertEqual(possibles,[(3,1),(2,1),(1,1),(0,1)])
+        board.set_piece(0,4,rook)
+        possibles=rook.possible_positions_vd(0,4)
+        self.assertEqual(possibles,[(1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,4)])
     
     def test_move_vertical_desc_with_own_pieces(self):
-        board = Board()
-        board.__positions__[5][1]=None
-        board.__positions__[6][1]=Pawn("BLACK", board)
+        board = Board(for_test=True)
         rook = Rook("BLACK", board)
-        board.set_piece(4, 1, rook)
-        possibles = rook.possible_positions_vd(4, 1)
+        board.set_piece(4,4, rook)
+        board.set_piece(7,4,Pawn("BLACK", board))
+        possibles = rook.possible_positions_vd(4, 4)
         self.assertEqual(
             possibles,
-            [(5, 1)]
+            [(5, 4),(6,4)]
         )
 
-    def test_move_vertical_desc_with_not_own_piece(self):
-        board = Board()
-        board.set_piece(6, 1, Pawn("BLACK", board))
-        rook = Rook("WHITE", board)
-        board.set_piece(4, 1, rook)
-        possibles = rook.possible_positions_vd(4, 1)
+    def test_move_vertical_desc_with_enemy_piece(self):
+        board = Board(for_test=True)
+        rook = Rook("BLACK", board)
+        board.set_piece(4,4, rook)
+        board.set_piece(7,4,Pawn("WHITE", board))
+        possibles = rook.possible_positions_vd(4, 4)
         self.assertEqual(
             possibles,
-            [(5, 1), (6, 1)]
+            [(5, 4),(6,4),(7,4)]
         )
-    
+
+    # VERTICAL ASCENDANT: 
+
+    def test_move_vertical_asc(self):
+        board=Board(for_test=True)
+        rook=Rook('WHITE',board)
+        board.set_piece(7,4,rook)
+        possibles=rook.possible_positions_va(7,4)
+        self.assertEqual(possibles,[(6,4),(5,4),(4,4),(3,4),(2,4),(1,4),(0,4)])
+
+    def test_move_vertical_asc_with_own_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(5,5,rook)
+        board.set_piece(3,5,Pawn('BLACK',board))
+        possibles=rook.possible_positions_va(5,5)
+        self.assertEqual(possibles,[(4,5)])
+        
+    def test_move_vertical_asc_with_enemy_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(5,5,rook)
+        board.set_piece(3,5,Pawn('WHITE',board))
+        possibles=rook.possible_positions_va(5,5)
+        self.assertEqual(possibles,[(4,5),(3,5)])
+
+    # DIAGONAL WORNG MOVES:
+
     def test_move_diagonal_desc(self):
         board=Board()
         rook=board.get_piece(0,0)

@@ -5,6 +5,9 @@ from rook import Rook
 from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 
 class TestBoard(unittest.TestCase):
+
+    # BOARD PRINT
+
     def test_str_board(self):
         board = Board()
         self.assertEqual(
@@ -20,7 +23,9 @@ class TestBoard(unittest.TestCase):
                 "♜      ♜\n"
             )
         )
-        
+    
+    # GET_PIECE METHOD
+
     def test_get_piece_in_range(self):
         board=Board()
         self.assertIsInstance(board.get_piece(0,0),Rook)
@@ -52,6 +57,8 @@ class TestBoard(unittest.TestCase):
             exc.exception.message,
             "La Columna indicada se encuentra fuera del tablero"
         )
+
+    # SET_PIECE METHOD
 
     def test_set_piece_in_range(self):
         board=Board(for_test=True)
@@ -90,6 +97,8 @@ class TestBoard(unittest.TestCase):
             "La Columna indicada se encuentra fuera del tablero"
         )
 
+    # PUTTING ROOKS ON THE BOARD WHEN STARTING THE GAME
+
     def test_rooks_creation(self):
         board=Board()
         self.assertIsInstance(board.get_piece(0,0),Rook)
@@ -100,6 +109,8 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.get_piece(7,0).__color__,'WHITE')
         self.assertIsInstance(board.get_piece(7,7),Rook)
         self.assertEqual(board.get_piece(7,7).__color__,'WHITE')
+
+    # PUTTING PAWNS ON THE BOARD WHEN STARTIGN THE GAME
 
     def test_pawns_creation(self):
         board=Board()
@@ -136,6 +147,8 @@ class TestBoard(unittest.TestCase):
         self.assertIsInstance(board.get_piece(6,7),Pawn)
         self.assertEqual(board.get_piece(6,7).__color__,'WHITE')
 
+    # EMPTY SPACES ON THE BOARD WHEN STARTING THE GAME
+
     def test_empty_spaces(self):
         board=Board()
         self.assertIsNone(board.get_piece(2,0))
@@ -170,6 +183,8 @@ class TestBoard(unittest.TestCase):
         self.assertIsNone(board.get_piece(5,5))
         self.assertIsNone(board.get_piece(5,6))
         self.assertIsNone(board.get_piece(5,7))
+
+    # MOVE METHOD
 
     def test_move(self):
         board=Board(for_test=True)
