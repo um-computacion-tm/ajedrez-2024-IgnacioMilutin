@@ -67,11 +67,33 @@ class TestRook(unittest.TestCase):
 
     # DIAGONAL WORNG MOVES:
 
-    def test_move_diagonal_desc(self):
-        board=Board()
-        rook=board.get_piece(0,0)
+    def test_move_diagonal_desc_right(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(0,0,rook)
         is_possible=rook.valid_positions(0,0,1,1)
         self.assertFalse(is_possible)
         
+    def test_move_diagonal_desc_left(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(0,1,rook)
+        is_possible=rook.valid_positions(0,1,1,0)
+        self.assertFalse(is_possible)
+
+    def test_move_diagonal_asc_right(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(1,1,rook)
+        is_possible=rook.valid_positions(1,1,0,2)
+        self.assertFalse(is_possible)
+
+    def test_move_diagonal_asc_left(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(1,1,rook)
+        is_possible=rook.valid_positions(1,1,0,0)
+        self.assertFalse(is_possible)
+
 if __name__=='__main__':
     unittest.main()
