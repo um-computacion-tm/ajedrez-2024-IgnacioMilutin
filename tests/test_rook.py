@@ -65,6 +65,56 @@ class TestRook(unittest.TestCase):
         possibles=rook.possible_positions_va(5,5)
         self.assertEqual(possibles,[(4,5),(3,5)])
 
+    # HORIZONTAL RIGHT:
+
+    def test_move_horizontal_right(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        possibles=rook.possible_positions_hr(4,4)
+        self.assertEqual(possibles,[(4,5),(4,6),(4,7)])
+
+    def test_move_horizontal_right_with_own_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        board.set_piece(4,6,Pawn('BLACK',board))
+        possibles=rook.possible_positions_hr(4,4)
+        self.assertEqual(possibles,[(4,5)])
+
+    def test_move_horizontal_rigth_with_enemy_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        board.set_piece(4,6,Pawn('WHITE',board))
+        possibles=rook.possible_positions_hr(4,4)
+        self.assertEqual(possibles,[(4,5),(4,6)])
+
+    # HORIZONTAL LEFT:
+
+    def test_move_horizontal_left(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        possibles=rook.possible_positions_hl(4,4)
+        self.assertEqual(possibles,[(4,3),(4,2),(4,1),(4,0)])
+
+    def test_move_horizontal_left_with_own_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        board.set_piece(4,2,Pawn('BLACK',board))
+        possibles=rook.possible_positions_hr(4,4)
+        self.assertEqual(possibles,[(4,3)])
+
+    def test_move_horizontal_rigth_with_enemy_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        board.set_piece(4,2,Pawn('WHITE',board))
+        possibles=rook.possible_positions_hr(4,4)
+        self.assertEqual(possibles,[(4,3),(4,2)])
+
     # DIAGONAL WORNG MOVES:
 
     def test_move_diagonal_desc_right(self):
