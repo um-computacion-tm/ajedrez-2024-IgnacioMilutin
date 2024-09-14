@@ -115,6 +115,34 @@ class TestRook(unittest.TestCase):
         possibles=rook.possible_positions_hl(4,4)
         self.assertEqual(possibles,[(4,3),(4,2)])
 
+
+    # VALID POSITIONS:
+
+    def test_valid_positions(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        possible=rook.valid_positions(4,4)
+        self.assertEqual(possible,[(5,4),(6,4),(7,4),(3,4),(2,4),(1,4),(0,4),(4,5),(4,6),(4,7),(4,3),(4,2),(4,1),(4,0)])
+
+    # IS TO_ROW AND TO_COL IN VALID POSITIONS:
+
+    def test_is_row_col_in_valid_postions_true_path(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        possible_positions=rook.valid_positions(4,4)
+        validation=rook.is_row_col_in_valid_postions(3,4,possible_positions)
+        self.assertTrue(validation)
+
+    def test_is_row_col_in_valid_postions_false_path(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        board.set_piece(4,4,rook)
+        possible_positions=rook.valid_positions(4,4)
+        validation=rook.is_row_col_in_valid_postions(3,3,possible_positions)
+        self.assertFalse(validation)
+
     # DIAGONAL WORNG MOVES:
 
     def test_move_diagonal_desc_right(self):
@@ -144,6 +172,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(1,1,rook)
         is_possible=rook.valid_positions(1,1,0,0)
         self.assertFalse(is_possible)
+
 
 if __name__=='__main__':
     unittest.main()
