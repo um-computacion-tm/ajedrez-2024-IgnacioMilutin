@@ -149,29 +149,33 @@ class TestRook(unittest.TestCase):
         board=Board(for_test=True)
         rook=Rook('BLACK',board)
         board.set_piece(0,0,rook)
-        is_possible=rook.valid_positions(0,0,1,1)
-        self.assertFalse(is_possible)
+        possible_positions=rook.valid_positions(0,0)
+        possible=rook.is_row_col_in_valid_postions(1,1,possible_positions)
+        self.assertFalse(possible)
         
     def test_move_diagonal_desc_left(self):
         board=Board(for_test=True)
         rook=Rook('BLACK',board)
         board.set_piece(0,1,rook)
-        is_possible=rook.valid_positions(0,1,1,0)
-        self.assertFalse(is_possible)
+        possible_positions=rook.valid_positions(0,1)
+        possible=rook.is_row_col_in_valid_postions(1,0,possible_positions)
+        self.assertFalse(possible)
 
     def test_move_diagonal_asc_right(self):
         board=Board(for_test=True)
         rook=Rook('BLACK',board)
         board.set_piece(1,1,rook)
-        is_possible=rook.valid_positions(1,1,0,2)
-        self.assertFalse(is_possible)
+        possible_positions=rook.valid_positions(1,1)
+        possible=rook.is_row_col_in_valid_postions(0,2,possible_positions)
+        self.assertFalse(possible)
 
     def test_move_diagonal_asc_left(self):
         board=Board(for_test=True)
         rook=Rook('BLACK',board)
         board.set_piece(1,1,rook)
-        is_possible=rook.valid_positions(1,1,0,0)
-        self.assertFalse(is_possible)
+        possible_positions=rook.valid_positions(1,1)
+        possible=rook.is_row_col_in_valid_postions(0,0,possible_positions)
+        self.assertFalse(possible)
 
 
 if __name__=='__main__':

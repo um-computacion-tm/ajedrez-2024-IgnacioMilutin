@@ -15,7 +15,7 @@ class Chess:
             raise EmptyPosition()
         if not piece.get_color() == self.__turn__:
             raise InvalidTurn()
-        if not piece.valid_positions(from_row, from_col, to_row, to_col):
+        if not piece.valid_postions(from_row, from_col, to_row, to_col):
             raise InvalidMove()
         self.__board__.move(from_row, from_col, to_row, to_col)
         self.change_turn()

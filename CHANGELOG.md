@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.25] - 2024-09-15
+
+### Changed
+
+- Updated tests for wrong diagonal moves in rook, due to the valid_positions change
+
 ## [0.0.24] - 2024-09-14
 
 ### Added
