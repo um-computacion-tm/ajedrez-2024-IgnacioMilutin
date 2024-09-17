@@ -6,7 +6,7 @@ from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 
 class TestBoard(unittest.TestCase):
 
-    # BOARD PRINT
+    # STR
 
     def test_str_board(self):
         board = Board()
