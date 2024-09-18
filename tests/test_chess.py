@@ -6,6 +6,9 @@ class TestChess(unittest.TestCase):
 
     # IS_PLAYING
 
+    def test_is_playing(self):
+        chess=Chess()
+        self.assertTrue(chess.is_playing())
     
     # MOVE
 
@@ -29,6 +32,11 @@ class TestChess(unittest.TestCase):
 
     # TURNS TEST
 
+    def test_turn_method(self):
+        chess=Chess()
+        chess.__turn__='BLACK'
+        self.assertEqual(chess.turn(),'BLACK')
+
     def test_first_turn(self):
         chess=Chess()
         self.assertEqual(chess.turn(),'WHITE')
@@ -46,6 +54,19 @@ class TestChess(unittest.TestCase):
     
     # SHOW BOARD
 
+    def test_show_board(self):
+        chess=Chess()
+        self.assertEqual(chess.show_board(),
+            (
+                "♖      ♖\n"
+                "♙♙♙♙♙♙♙♙\n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "♟♟♟♟♟♟♟♟\n"
+                "♜      ♜\n"
+            ))
 
 if __name__=='__main__':
     unittest.main()
