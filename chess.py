@@ -20,7 +20,7 @@ class Chess:
         if not piece.get_color() == self.__turn__:
             raise InvalidTurn()
         possible=piece.valid_positions(from_row,from_col)
-        if not piece.is_row_col_in_valid_postions(to_row,to_col,possible):
+        if not piece.is_row_col_in_valid_positions(to_row,to_col,possible):
             raise InvalidMove()
         self.__board__.move(from_row, from_col, to_row, to_col)
         self.change_turn()

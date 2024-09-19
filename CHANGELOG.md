@@ -4,13 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.28] - 2024-09-18
+## [0.1.1] - 2024-09-19
+
+### Added
+
+- Pawn file with methods: valid positions, possible_postions_eat, possible_positions_move
+- Tests for pawn possible_postions_move and possible_positions_eat and str
+
+### Changed
+
+- Pawn str format
+- STR tests in rook
+
+## [0.1.28] - 2024-09-18
 
 ### Added 
 
 - Tests for methods is_playing, turn and show_board from chess
 
-## [0.0.27] - 2024-09-17
+## [0.1.27] - 2024-09-17
 
 ### Changed 
 

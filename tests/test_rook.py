@@ -1,13 +1,22 @@
 import unittest
-from pieces import Pawn
+from pieces import Piece
+from pawn import Pawn
 from board import Board
 from rook import Rook
 
 class TestRook(unittest.TestCase):
-    def test_str(self):
+
+    # STR
+
+    def test_str_white(self):
         board=Board()
         rook=Rook('WHITE',board)
         self.assertEqual(str(rook),'♜')
+
+    def test_str_black(self):
+        board=Board()
+        rook=Rook('BLAck',board)
+        self.assertEqual(str(rook),'♖')
 
     #VERTICAL DESCENDANT:
 
@@ -132,7 +141,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(4,4,rook)
         possible_positions=rook.valid_positions(4,4)
-        validation=rook.is_row_col_in_valid_postions(3,4,possible_positions)
+        validation=rook.is_row_col_in_valid_positions(3,4,possible_positions)
         self.assertTrue(validation)
 
     def test_is_row_col_in_valid_postions_false_path(self):
@@ -140,7 +149,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(4,4,rook)
         possible_positions=rook.valid_positions(4,4)
-        validation=rook.is_row_col_in_valid_postions(3,3,possible_positions)
+        validation=rook.is_row_col_in_valid_positions(3,3,possible_positions)
         self.assertFalse(validation)
 
     # DIAGONAL WORNG MOVES:
@@ -150,7 +159,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(0,0,rook)
         possible_positions=rook.valid_positions(0,0)
-        possible=rook.is_row_col_in_valid_postions(1,1,possible_positions)
+        possible=rook.is_row_col_in_valid_positions(1,1,possible_positions)
         self.assertFalse(possible)
         
     def test_move_diagonal_desc_left(self):
@@ -158,7 +167,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(0,1,rook)
         possible_positions=rook.valid_positions(0,1)
-        possible=rook.is_row_col_in_valid_postions(1,0,possible_positions)
+        possible=rook.is_row_col_in_valid_positions(1,0,possible_positions)
         self.assertFalse(possible)
 
     def test_move_diagonal_asc_right(self):
@@ -166,7 +175,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(1,1,rook)
         possible_positions=rook.valid_positions(1,1)
-        possible=rook.is_row_col_in_valid_postions(0,2,possible_positions)
+        possible=rook.is_row_col_in_valid_positions(0,2,possible_positions)
         self.assertFalse(possible)
 
     def test_move_diagonal_asc_left(self):
@@ -174,7 +183,7 @@ class TestRook(unittest.TestCase):
         rook=Rook('BLACK',board)
         board.set_piece(1,1,rook)
         possible_positions=rook.valid_positions(1,1)
-        possible=rook.is_row_col_in_valid_postions(0,0,possible_positions)
+        possible=rook.is_row_col_in_valid_positions(0,0,possible_positions)
         self.assertFalse(possible)
 
 

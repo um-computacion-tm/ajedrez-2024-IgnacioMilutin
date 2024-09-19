@@ -1,4 +1,5 @@
-from pieces import Pawn
+from pieces import Piece
+from pawn import Pawn
 from rook import Rook
 from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 

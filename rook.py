@@ -12,7 +12,7 @@ class Rook(Piece):
     
     # CHECKS IF TO_ROW AND TO_COL ARE IN POSSIBEL POSITIONS:
 
-    def is_row_col_in_valid_postions(self,to_row,to_col,possible_positions):
+    def is_row_col_in_valid_positions(self,to_row,to_col,possible_positions):
         if (to_row,to_col) in possible_positions:
             return True
         else: False
