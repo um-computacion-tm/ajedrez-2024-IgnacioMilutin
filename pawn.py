@@ -4,17 +4,11 @@ class Pawn(Piece):
     white_str='♟'
     black_str='♙'
 
-    # POSSIBLE POSITIONS TO MOVE PAWN(unfinished)
+    # POSSIBLE POSITIONS TO MOVE PAWN INCLUDIONG MOVE AND EAT
     
-    def valid_positions(self, from_row, from_col):
-        possibles = self.possible_positions_move(
-            from_row,
-            from_col,
-        )
-        possibles.extend(
-            self.possible_positions_eat(from_row, from_col)
-        )
-        return possibles
+    def valid_positions(self,from_row,from_col):
+        possible_positions=self.possible_positions_move(from_row, from_col)+self.possible_positions_eat(from_row, from_col)
+        return possible_positions
    
     # PAWN EATING A PIECE
 
