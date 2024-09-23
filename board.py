@@ -16,16 +16,19 @@ class Board:
             self.pawn_boards_definition()
     
     # CREATE THE PRINT OF THE BOARD
-
+    
     def __str__(self):
-        board_str = ""
-        for row in self.__positions__:
+        board_str = "   1    2   3   4   5   6   7   8\n"
+        board_str += "  " + "-" * 33 + "\n"
+        for i, row in enumerate(self.__positions__):
+            board_str += str(i+1) + " | "
             for cell in row:
                 if cell is not None:
-                    board_str += str(cell)
+                    board_str += str(cell) + " | "
                 else:
-                    board_str += " "
+                    board_str += "   | "
             board_str += "\n"
+            board_str += "  " + "-" * 33 + "\n"
         return board_str
 
     # GETS THE PIECE OF A SPECIFIC ROW AND COLUMN

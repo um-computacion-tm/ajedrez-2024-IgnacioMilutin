@@ -1,5 +1,7 @@
 import unittest
 from chess import Chess
+from board import Board
+from pawn import Pawn
 from exceptions import EmptyPosition,InvalidTurn,InvalidMove
 
 class TestChess(unittest.TestCase):
@@ -29,6 +31,12 @@ class TestChess(unittest.TestCase):
         with self.assertRaises(InvalidMove) as exc:
             chess.move(7,0,5,1)
         self.assertEqual(exc.exception.message,"Movimieto de pieza invalido")
+
+    def test_move_good_path(self):
+        chess=Chess()
+        chess.move(6,4,5,4)
+        self.assertIsInstance(chess.__board__.get_piece(5,4),Pawn)
+        self.assertEqual(chess.turn(),'BLACK')
 
     # TURNS TEST
 
