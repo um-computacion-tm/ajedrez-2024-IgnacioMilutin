@@ -12,6 +12,9 @@ class EmptyPosition(InvalidMove):
 class InvalidMoveRookMove(InvalidMove):
     message='La torre no se puede mover en esa direccion'
 
+class InvalidMovePawnMove(InvalidMove):
+    message='El peon no se puede mover en esa dirección'
+    
 class OutOfBoard(InvalidMove):
     message = "La posicion indicada se encuentra fuera del tablero"
 

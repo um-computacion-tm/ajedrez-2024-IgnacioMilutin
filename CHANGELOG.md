@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2024-09-22
+
+### Added
+
+- Exception for wrong pawn move
+- Tests fro piece methods: str and get_color
+
+### Changed
+
+- Now is_row_col_in_valid_postions is a piece method
+- is_row_col_in_valid_positions tests in piece tests
+
 ## [0.1.2] - 2024-09-20
 
 ### Added 
