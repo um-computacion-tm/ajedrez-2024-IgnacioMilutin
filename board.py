@@ -1,6 +1,10 @@
 from pieces import Piece
 from pawn import Pawn
 from rook import Rook
+from knight import Knight
+from bishop import Bishop
+from queen import Queen
+from king import King
 from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 
 class Board:
@@ -18,7 +22,7 @@ class Board:
     # CREATE THE PRINT OF THE BOARD
     
     def __str__(self):
-        board_str = "   1    2   3   4   5   6   7   8\n"
+        board_str = "    1   2   3   4   5   6   7   8\n"
         board_str += "  " + "-" * 33 + "\n"
         for i, row in enumerate(self.__positions__):
             board_str += str(i+1) + " | "
@@ -26,7 +30,7 @@ class Board:
                 if cell is not None:
                     board_str += str(cell) + " | "
                 else:
-                    board_str += "   | "
+                    board_str += "  | "
             board_str += "\n"
             board_str += "  " + "-" * 33 + "\n"
         return board_str
@@ -52,6 +56,13 @@ class Board:
         elif not 0 <= col < 8:
             raise ColumnOutOfBoard()
         else: self.__positions__[row][col] = piece
+
+    # MOVES A PIECE FROM A CELL TO OTHER CELL
+
+    def move(self,from_row,from_col,to_row,to_col):
+        origin=self.get_piece(from_row,from_col)
+        self.set_piece(to_row,to_col,origin)
+        self.set_piece(from_row,from_col,None)
 
     # SETS ROOKS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
@@ -81,9 +92,3 @@ class Board:
         self.__positions__[1][6]=Pawn('BLACK',self)
         self.__positions__[1][7]=Pawn('BLACK',self)
     
-    # MOVES A PIECE FROM A CELL TO OTHER CELL
-
-    def move(self,from_row,from_col,to_row,to_col):
-        origin=self.get_piece(from_row,from_col)
-        self.set_piece(to_row,to_col,origin)
-        self.set_piece(from_row,from_col,None)
