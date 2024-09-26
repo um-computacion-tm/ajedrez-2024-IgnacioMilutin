@@ -40,10 +40,9 @@ class Pawn(Piece):
                     return [(from_row + 1, from_col),(from_row + 2, from_col)]
                 else: return [(from_row + 1, from_col)]
             else: return []
-        elif self.__color__=="WHITE":
+        else:
             if self.__board__.get_piece(from_row-1,from_col) is None:
                 if from_row==6 and self.__board__.get_piece(from_row-2,from_col) is None:
                     return [(from_row-1,from_col),(from_row-2,from_col)]
                 else: return [(from_row-1,from_col)]
             else: return []
-        else: return []

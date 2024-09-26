@@ -221,7 +221,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(2,4)
         self.assertEqual(possibles,[(3,4)])
 
-    def test_valid_positions_black_initial_block_by_own_eat_and_eat_left(self):
+    def test_valid_positions_black_initial_block_by_own_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(1,4,pawn)
@@ -230,7 +230,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(1,4)
         self.assertEqual(possibles,[(2,4),(2,3)])
 
-    def test_valid_positions_black_initial_block_by_own_eat_and_eat_right(self):
+    def test_valid_positions_black_initial_block_by_own_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(1,4,pawn)
@@ -239,7 +239,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(1,4)
         self.assertEqual(possibles,[(2,4),(2,5)])
 
-    def test_valid_positions_black_not_initial_block_by_own_eat_and_eat_left(self):
+    def test_valid_positions_black_not_initial_block_by_own_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(2,4,pawn)
@@ -248,7 +248,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(2,4)
         self.assertEqual(possibles,[(3,3)])
 
-    def test_valid_positions_black_not_initial_block_by_own_eat_and_eat_right(self):
+    def test_valid_positions_black_not_initial_block_by_own_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(2,4,pawn)
@@ -257,7 +257,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(2,4)
         self.assertEqual(possibles,[(3,5)])
 
-    def test_valid_positions_black_initial_block_by_enemy_eat_and_eat_left(self):
+    def test_valid_positions_black_initial_block_by_enemy_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(1,4,pawn)
@@ -266,7 +266,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(1,4)
         self.assertEqual(possibles,[(2,4),(2,3)])
 
-    def test_valid_positions_black_initial_block_by_enemy_eat_and_eat_right(self):
+    def test_valid_positions_black_initial_block_by_enemy_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(1,4,pawn)
@@ -275,7 +275,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(1,4)
         self.assertEqual(possibles,[(2,4),(2,5)])
 
-    def test_valid_positions_black_not_initial_block_by_enemy_eat_and_eat_left(self):
+    def test_valid_positions_black_not_initial_block_by_enemy_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(2,4,pawn)
@@ -284,7 +284,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(2,4)
         self.assertEqual(possibles,[(3,3)])
 
-    def test_valid_positions_black_not_initial_block_by_enemy_eat_and_eat_right(self):
+    def test_valid_positions_black_not_initial_block_by_enemy_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('BLACK',board)
         board.set_piece(2,4,pawn)
@@ -307,7 +307,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(5,4)
         self.assertEqual(possibles,[(4,4)])
     
-    def test_valid_positions_white_initial_block_by_own_eat_and_eat_left(self):
+    def test_valid_positions_white_initial_block_by_own_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(6,4,pawn)
@@ -316,7 +316,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(6,4)
         self.assertEqual(possibles,[(5,4),(5,3)])
 
-    def test_valid_positions_white_initial_block_by_own_eat_and_eat_right(self):
+    def test_valid_positions_white_initial_block_by_own_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(6,4,pawn)
@@ -325,7 +325,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(6,4)
         self.assertEqual(possibles,[(5,4),(5,5)])
 
-    def test_valid_positions_white_not_initial_block_by_own_eat_and_eat_left(self):
+    def test_valid_positions_white_not_initial_block_by_own_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(5,4,pawn)
@@ -334,7 +334,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(5,4)
         self.assertEqual(possibles,[(4,3)])
 
-    def test_valid_positions_white_not_initial_block_by_own_eat_and_eat_right(self):
+    def test_valid_positions_white_not_initial_block_by_own_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(5,4,pawn)
@@ -343,7 +343,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(5,4)
         self.assertEqual(possibles,[(4,5)])
 
-    def test_valid_positions_white_initial_block_by_enemy_eat_and_eat_left(self):
+    def test_valid_positions_white_initial_block_by_enemy_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(6,4,pawn)
@@ -352,7 +352,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(6,4)
         self.assertEqual(possibles,[(5,4),(5,3)])
 
-    def test_valid_positions_white_initial_block_by_enemy_eat_and_eat_right(self):
+    def test_valid_positions_white_initial_block_by_enemy_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(6,4,pawn)
@@ -361,7 +361,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(6,4)
         self.assertEqual(possibles,[(5,4),(5,5)])
 
-    def test_valid_positions_white_not_initial_block_by_enemy_eat_and_eat_left(self):
+    def test_valid_positions_white_not_initial_block_by_enemy_and_eat_left(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(5,4,pawn)
@@ -370,7 +370,7 @@ class TestPawn(unittest.TestCase):
         possibles=pawn.valid_positions(5,4)
         self.assertEqual(possibles,[(4,3)])
 
-    def test_valid_positions_white_not_initial_block_by_enemy_eat_and_eat_right(self):
+    def test_valid_positions_white_not_initial_block_by_enemy_and_eat_right(self):
         board=Board(for_test=True)
         pawn=Pawn('WHITE',board)
         board.set_piece(5,4,pawn)

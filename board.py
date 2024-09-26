@@ -17,7 +17,11 @@ class Board:
             self.__positions__.append(col)
         if not for_test:
             self.rook_board_definition()
-            self.pawn_boards_definition()
+            self.pawn_board_definition()
+            self.king_board_definition()
+            self.queen_board_definition()
+            self.bishop_board_definition()
+            self.knight_board_definition()
     
     # CREATE THE PRINT OF THE BOARD
     
@@ -74,7 +78,7 @@ class Board:
 
     # SETS PAWNS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
-    def pawn_boards_definition(self):
+    def pawn_board_definition(self):
         self.__positions__[6][0]=Pawn('WHITE',self)
         self.__positions__[6][1]=Pawn('WHITE',self)
         self.__positions__[6][2]=Pawn('WHITE',self)
@@ -92,3 +96,30 @@ class Board:
         self.__positions__[1][6]=Pawn('BLACK',self)
         self.__positions__[1][7]=Pawn('BLACK',self)
     
+    # SETS KINGS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def king_board_definition(self):
+        self.__positions__[7][4]=King('WHITE',self)
+        self.__positions__[0][4]=King('BLACK',self)
+
+    # SETS QUEENS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def queen_board_definition(self):
+        self.__positions__[7][3]=Queen('WHITE',self)
+        self.__positions__[0][3]=Queen('BLACK',self)
+
+    # SETS BISHOPS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def bishop_board_definition(self):
+        self.__positions__[7][2]=Bishop('WHITE',self)
+        self.__positions__[7][5]=Bishop('WHITE',self)
+        self.__positions__[0][2]=Bishop('BLACK',self)
+        self.__positions__[0][5]=Bishop('BLACK',self)
+
+    # SETS KNIGHTS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def knight_board_definition(self):
+        self.__positions__[7][1]=Knight('WHITE',self)
+        self.__positions__[7][6]=Knight('WHITE',self)
+        self.__positions__[0][1]=Knight('BLACK',self)
+        self.__positions__[0][6]=Knight('BLACK',self)
