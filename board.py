@@ -26,10 +26,10 @@ class Board:
     # CREATE THE PRINT OF THE BOARD
     
     def __str__(self):
-        board_str = "    1   2   3   4   5   6   7   8\n"
+        board_str = "    0   1   2   3   4   5   6   7\n"
         board_str += "  " + "-" * 33 + "\n"
         for i, row in enumerate(self.__positions__):
-            board_str += str(i+1) + " | "
+            board_str += str(i) + " | "
             for cell in row:
                 if cell is not None:
                     board_str += str(cell) + " | "

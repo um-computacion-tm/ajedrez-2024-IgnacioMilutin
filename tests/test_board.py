@@ -3,6 +3,10 @@ from board import Board
 from pieces import Piece
 from pawn import Pawn
 from rook import Rook
+from bishop import Bishop
+from knight import Knight
+from king import King
+from queen import Queen
 from exceptions import OutOfBoard, RowOutOfBoard, ColumnOutOfBoard
 
 class TestBoard(unittest.TestCase):
@@ -14,11 +18,13 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(
             str(board),
             (
-                "    1   2   3   4   5   6   7   8\n"
+                "    0   1   2   3   4   5   6   7\n"
                 "  ---------------------------------\n"
-                "1 | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ | \n"
+                "0 | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ | \n"
                 "  ---------------------------------\n"
-                "2 | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | \n"
+                "1 | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | \n"
+                "  ---------------------------------\n"
+                "2 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
                 "3 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
@@ -26,11 +32,9 @@ class TestBoard(unittest.TestCase):
                 "  ---------------------------------\n"
                 "5 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
-                "6 |   |   |   |   |   |   |   |   | \n"
+                "6 | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | \n"
                 "  ---------------------------------\n"
-                "7 | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | \n"
-                "  ---------------------------------\n"
-                "8 | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ | \n"
+                "7 | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ | \n"
                 "  ---------------------------------\n"
             )
         )
@@ -121,6 +125,7 @@ class TestBoard(unittest.TestCase):
         self.assertIsInstance(board.get_piece(7,7),Rook)
         self.assertEqual(board.get_piece(7,7).__color__,'WHITE')
 
+
     # PUTTING PAWNS ON THE BOARD WHEN STARTIGN THE GAME
 
     def test_pawns_creation(self):
@@ -210,9 +215,11 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(
             str(board),
             (
-                "    1   2   3   4   5   6   7   8\n"
+                "    0   1   2   3   4   5   6   7\n"
                 "  ---------------------------------\n"
-                "1 |   | ♖ |   |   |   |   |   |   | \n"
+                "0 |   | ♖ |   |   |   |   |   |   | \n"
+                "  ---------------------------------\n"
+                "1 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
                 "2 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
@@ -225,8 +232,6 @@ class TestBoard(unittest.TestCase):
                 "6 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
                 "7 |   |   |   |   |   |   |   |   | \n"
-                "  ---------------------------------\n"
-                "8 |   |   |   |   |   |   |   |   | \n"
                 "  ---------------------------------\n"
             )
         )
