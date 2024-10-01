@@ -125,6 +125,50 @@ class TestBoard(unittest.TestCase):
         self.assertIsInstance(board.get_piece(7,7),Rook)
         self.assertEqual(board.get_piece(7,7).__color__,'WHITE')
 
+    # PUTTING BISHOPS ON THE BOARD WHEN STARTING THE GAME
+
+    def test_bishops_creation(self):
+        board=Board()
+        self.assertIsInstance(board.get_piece(0,2),Bishop)
+        self.assertEqual(board.get_piece(0,2).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(0,5),Bishop)
+        self.assertEqual(board.get_piece(0,5).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(7,2),Bishop)
+        self.assertEqual(board.get_piece(7,2).__color__,'WHITE')
+        self.assertIsInstance(board.get_piece(7,5),Bishop)
+        self.assertEqual(board.get_piece(7,5).__color__,'WHITE')
+
+    # PUTTING KNIGHTS ON THE BOARD WHEN STARTING THE GAME
+
+    def test_knights_creation(self):
+        board=Board()
+        self.assertIsInstance(board.get_piece(0,1),Knight)
+        self.assertEqual(board.get_piece(0,1).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(0,6),Knight)
+        self.assertEqual(board.get_piece(0,6).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(7,1),Knight)
+        self.assertEqual(board.get_piece(7,1).__color__,'WHITE')
+        self.assertIsInstance(board.get_piece(7,6),Knight)
+        self.assertEqual(board.get_piece(7,6).__color__,'WHITE')
+
+
+    # PUTTING KINGS ON THE BOARD WHEN STARTING THE GAME
+
+    def test_kings_creation(self):
+        board=Board()
+        self.assertIsInstance(board.get_piece(0,4),King)
+        self.assertEqual(board.get_piece(0,4).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(7,4),King)
+        self.assertEqual(board.get_piece(7,4).__color__,'WHITE')
+
+    # PUTTING QUEENS ON THE BOARD WHEN STARTING THE GAME
+
+    def test_queens_creation(self):
+        board=Board()
+        self.assertIsInstance(board.get_piece(0,3),Queen)
+        self.assertEqual(board.get_piece(0,3).__color__,'BLACK')
+        self.assertIsInstance(board.get_piece(7,3),Queen)
+        self.assertEqual(board.get_piece(7,3).__color__,'WHITE')
 
     # PUTTING PAWNS ON THE BOARD WHEN STARTIGN THE GAME
 
