@@ -55,9 +55,9 @@ class TestBishop(unittest.TestCase):
     def test_move_diagonal_ascendant_left(self):
         board=Board(for_test=True)
         bishop=Bishop('WHITE',board)
-        board.set_piece(4,4,bishop)
-        possibles=possible_positions_dal(bishop,4,4)
-        self.assertEqual(possibles,[(3,3),(2,2),(1,1),(0,0)])
+        board.set_piece(4,3,bishop)
+        possibles=possible_positions_dal(bishop,4,3)
+        self.assertEqual(possibles,[(3,2),(2,1),(1,0)])
     
     def test_move_diagonal_ascendant_left_with_own_pieces(self):
         board = Board(for_test=True)
@@ -80,15 +80,17 @@ class TestBishop(unittest.TestCase):
             possibles,
             [(3,3),(2,2),(1,1)]
         )
+    
+    #def test_move_diagonal_ascendant_left_hitting_
 
     # DIAGONAL DESCENDANT TO THE RIGHT:
 
     def test_move_diagonal_descendant_right(self):
         board=Board(for_test=True)
         bishop=Bishop('WHITE',board)
-        board.set_piece(4,4,bishop)
-        possibles=possible_positions_ddr(bishop,4,4)
-        self.assertEqual(possibles,[(5,5),(6,6),(7,7)])
+        board.set_piece(3,4,bishop)
+        possibles=possible_positions_ddr(bishop,3,4)
+        self.assertEqual(possibles,[(4,5),(5,6),(6,7)])
     
     def test_move_diagonal_descendant_right_with_own_pieces(self):
         board = Board(for_test=True)
@@ -117,9 +119,9 @@ class TestBishop(unittest.TestCase):
     def test_move_diagonal_descendant_left(self):
         board=Board(for_test=True)
         bishop=Bishop('WHITE',board)
-        board.set_piece(4,4,bishop)
-        possibles=possible_positions_ddl(bishop,4,4)
-        self.assertEqual(possibles,[(5,3),(6,2),(7,1)])
+        board.set_piece(3,3,bishop)
+        possibles=possible_positions_ddl(bishop,3,3)
+        self.assertEqual(possibles,[(4,2),(5,1),(6,0)])
     
     def test_move_diagonal_descendant_left_with_own_pieces(self):
         board = Board(for_test=True)

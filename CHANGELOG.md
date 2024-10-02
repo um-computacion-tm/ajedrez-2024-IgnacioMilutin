@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.9] - 2024-10-02
+
+### Added 
+
+- Diagonal ascendant left and right and diagonal descendant left and right moves
+
 ## [0.1.8] - 2024-10-01
 
 ### Added
 
-- Tests for the rook creation 
+- Tests for the all pieces creation creation 
 - Tests for bishop moves, str, valid_positions and vertical and horizontal wrong moves
 
 ## [0.1.7] - 2024-09-27
