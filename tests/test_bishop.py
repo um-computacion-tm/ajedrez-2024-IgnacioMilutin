@@ -80,8 +80,6 @@ class TestBishop(unittest.TestCase):
             possibles,
             [(3,3),(2,2),(1,1)]
         )
-    
-    #def test_move_diagonal_ascendant_left_hitting_
 
     # DIAGONAL DESCENDANT TO THE RIGHT:
 
@@ -146,7 +144,7 @@ class TestBishop(unittest.TestCase):
         
     # VALID POSITIONS:
 
-    def test_valid_positions_rook(self):
+    def test_valid_positions_bishop(self):
         board=Board(for_test=True)
         bishop=Bishop('BLACK',board)
         board.set_piece(4,4,bishop)
