@@ -249,7 +249,7 @@ class TestQueen(unittest.TestCase):
         possibles=possible_positions_hl(queen,4,4)
         self.assertEqual(possibles,[(4,3),(4,2)])
 
-     # VALID POSITIONS:
+    # VALID POSITIONS:
 
     def test_valid_positions_queen(self):
         board=Board(for_test=True)
