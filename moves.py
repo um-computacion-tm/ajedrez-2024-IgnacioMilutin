@@ -1,3 +1,17 @@
+# LIST OF ALL POSSIBLE MOVES FOR ALL PIECES OF A COLOR
+
+def all_moves(piece,color):
+        all_moves=[]
+        for row in range(8):
+            for col in range(8):
+                piece=piece.__board__.get_piece(row,col)
+                if piece is None:
+                    continue
+                elif piece.get_color()==color:
+                    all_moves+=piece.valid_positions(row,col)
+                else: continue
+        return all_moves
+
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
 
 def possible_positions_vd(piece,row,col):

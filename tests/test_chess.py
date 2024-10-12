@@ -2,6 +2,8 @@ import unittest
 from chess import Chess
 from board import Board
 from pawn import Pawn
+from rook import Rook
+from bishop import Bishop
 from exceptions import EmptyPosition,InvalidTurn,InvalidMove
 
 class TestChess(unittest.TestCase):
