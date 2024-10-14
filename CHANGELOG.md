@@ -4,13 +4,164 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.28] - 2024-09-18
+## [0.1.15] - 2024-10-14
+
+### Added
+
+- get_opposite_color method in piece and tests for the function
+- Test fro all_moves function with a king in the board
+
+### Changed
+
+- Added a parameter to kings valid_positions and added conditionals due to the change in chesses move method and all_moves function
+- Tests for kings valid_positions corrected, there was no piece that put in danger the king
+- Updated king moves tests, if the piece is black is not tested
+
+## [0.1.14] - 2024-10-12
+
+### Added
+
+- Tests for king str, valid_positions and moves
+- Method in moves that shows all one team moves and its test
+
+### Known Issues
+
+- Tests for king valid_postions dont pass
+
+## [0.1.13] - 2024-10-11
+
+### Added
+
+- Tests for knight out of board in every knight move
+- All knight moves and valid_postions methods
+
+### Delete
+
+- Knight tests for pieces in the middle
+
+## [0.1.12] - 2024-10-10
+
+### Added
+
+- Tests for al knight moves, str and valid_positions
+
+## [0.1.11] - 2024-10-04
+
+### Added
+
+- Valid_postiosn method for queen
+
+## [0.1.10] - 2024-10-03
+
+### Added
+
+- Test for queen moves, str and valid_positions
+
+## [0.1.9] - 2024-10-02
+
+### Added 
+
+- Diagonal ascendant left and right and diagonal descendant left and right moves
+
+## [0.1.8] - 2024-10-01
+
+### Added
+
+- Tests for the all pieces creation creation 
+- Tests for bishop moves, str, valid_positions and vertical and horizontal wrong moves
+
+## [0.1.7] - 2024-09-27
+
+### Added
+
+- Moves file for all de moves that are in 2 or more pieces
+
+### Changed
+
+- Board str now has numbers from 0 to 7 not 1 to 8
+- Updated rook test because of the moves changes
+- Updated rook valid_positions method due to the moves changes
+
+## [0.1.6] - 2024-09-26
+
+### Added 
+
+- Definition method for king, queen, bishop and knight
+- Tests fro piece str one for each piece
+
+### Changed
+
+- Pawns possible_positions_move method now only have black and white options
+
+## [0.1.5] - 2024-09-24
+
+### Added
+
+- New files for king, queen, bishop and knight with their str for each color
+
+### Changed
+
+- tests that include board print
+
+### Known Issues
+
+- All tests including the board str dont pass, update after adding other pieces
+
+## [0.1.4] - 2024-09-23
+
+### Added 
+
+- Good path tests for move method in chess
+
+### Changed
+
+- Improved the board print
+
+### Known Issues
+
+- All tests including the board str dont pass, update after adding other pieces
+
+## [0.1.3] - 2024-09-22
+
+### Added
+
+- Exception for wrong pawn move
+- Tests fro piece methods: str and get_color
+
+### Changed
+
+- Now is_row_col_in_valid_postions is a piece method
+- is_row_col_in_valid_positions tests in piece tests
+
+## [0.1.2] - 2024-09-20
+
+### Added 
+
+- Tests for valid_postions for pawn
+
+### Changed
+
+- Corrected valid_positions method for pawn, because of possible_eat and possible move changes
+
+## [0.1.1] - 2024-09-19
+
+### Added
+
+- Pawn file with methods: valid positions, possible_postions_eat, possible_positions_move
+- Tests for pawn possible_postions_move and possible_positions_eat and str
+
+### Changed
+
+- Pawn str format
+- STR tests in rook
+
+## [0.1.28] - 2024-09-18
 
 ### Added 
 
 - Tests for methods is_playing, turn and show_board from chess
 
-## [0.0.27] - 2024-09-17
+## [0.1.27] - 2024-09-17
 
 ### Changed 
 

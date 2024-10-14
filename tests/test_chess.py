@@ -1,5 +1,8 @@
 import unittest
 from chess import Chess
+from pawn import Pawn
+from board import Board
+from king import King
 from exceptions import EmptyPosition,InvalidTurn,InvalidMove
 
 class TestChess(unittest.TestCase):
@@ -30,6 +33,21 @@ class TestChess(unittest.TestCase):
             chess.move(7,0,5,1)
         self.assertEqual(exc.exception.message,"Movimieto de pieza invalido")
 
+    def test_move_good_path(self):
+        chess=Chess()
+        chess.move(6,4,5,4)
+        self.assertIsInstance(chess.__board__.get_piece(5,4),Pawn)
+        self.assertEqual(chess.turn(),'BLACK')
+
+    def test_move_moving_a_king(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(4,4,King('WHITE',board))
+        chess.move(4,4,5,4)
+        self.assertIsInstance(chess.__board__.get_piece(5,4),King)
+        self.assertEqual(chess.turn(),'BLACK')
+
     # TURNS TEST
 
     def test_turn_method(self):
@@ -58,14 +76,24 @@ class TestChess(unittest.TestCase):
         chess=Chess()
         self.assertEqual(chess.show_board(),
             (
-                "♖      ♖\n"
-                "♙♙♙♙♙♙♙♙\n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "♟♟♟♟♟♟♟♟\n"
-                "♜      ♜\n"
+                "    0   1   2   3   4   5   6   7\n"
+                "  ---------------------------------\n"
+                "0 | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ | \n"
+                "  ---------------------------------\n"
+                "1 | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | \n"
+                "  ---------------------------------\n"
+                "2 |   |   |   |   |   |   |   |   | \n"
+                "  ---------------------------------\n"
+                "3 |   |   |   |   |   |   |   |   | \n"
+                "  ---------------------------------\n"
+                "4 |   |   |   |   |   |   |   |   | \n"
+                "  ---------------------------------\n"
+                "5 |   |   |   |   |   |   |   |   | \n"
+                "  ---------------------------------\n"
+                "6 | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | \n"
+                "  ---------------------------------\n"
+                "7 | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ | \n"
+                "  ---------------------------------\n"
             ))
 
 if __name__=='__main__':
