@@ -87,6 +87,17 @@ class TestPiece(unittest.TestCase):
         rook=Rook('BLACK',board)
         self.assertEqual(rook.get_color(),'BLACK')
 
+    # GET_OPPOSITE_COLOR
+
+    def test_get_opposite_color_white_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('WHITE',board)
+        self.assertEqual(rook.get_opposite_color(),'BLACK')
+
+    def test_get_opposite_color_black_piece(self):
+        board=Board(for_test=True)
+        rook=Rook('BLACK',board)
+        self.assertEqual(rook.get_opposite_color(),'WHITE')
 
     # IS TO_ROW AND TO_COL IN VALID POSITIONS:
 

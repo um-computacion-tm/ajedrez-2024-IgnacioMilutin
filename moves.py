@@ -1,14 +1,16 @@
 # LIST OF ALL POSSIBLE MOVES FOR ALL PIECES OF A COLOR
 
-def all_moves(piece,color):
+def all_moves(board,color):
         all_moves=[]
         for row in range(8):
             for col in range(8):
-                piece=piece.__board__.get_piece(row,col)
+                piece=board.get_piece(row,col)
                 if piece is None:
                     continue
                 elif piece.get_color()==color:
-                    all_moves+=piece.valid_positions(row,col)
+                    if type(piece).__name__=='King':
+                        all_moves+=piece.valid_positions(row,col,for_all_moves=True)
+                    else: all_moves+=piece.valid_positions(row,col)
                 else: continue
         return all_moves
 

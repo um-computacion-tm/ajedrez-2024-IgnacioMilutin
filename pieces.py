@@ -10,6 +10,11 @@ class Piece:
         
     def get_color(self):
         return self.__color__
+    
+    def get_opposite_color(self):
+        if self.__color__=='WHITE':
+            return 'BLACK'
+        else: return 'WHITE'
 
     # CHECKS IF TO_ROW AND TO_COL ARE IN POSSIBEL POSITIONS:
 

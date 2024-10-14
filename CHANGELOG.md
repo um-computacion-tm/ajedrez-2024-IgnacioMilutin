@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.15] - 2024-10-14
+
+### Added
+
+- get_opposite_color method in piece and tests for the function
+- Test fro all_moves function with a king in the board
+
+### Changed
+
+- Added a parameter to kings valid_positions and added conditionals due to the change in chesses move method and all_moves function
+- Tests for kings valid_positions corrected, there was no piece that put in danger the king
+- Updated king moves tests, if the piece is black is not tested
+
 ## [0.1.14] - 2024-10-12
 
 ### Added

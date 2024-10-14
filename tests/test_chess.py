@@ -1,9 +1,8 @@
 import unittest
 from chess import Chess
-from board import Board
 from pawn import Pawn
-from rook import Rook
-from bishop import Bishop
+from board import Board
+from king import King
 from exceptions import EmptyPosition,InvalidTurn,InvalidMove
 
 class TestChess(unittest.TestCase):
@@ -38,6 +37,15 @@ class TestChess(unittest.TestCase):
         chess=Chess()
         chess.move(6,4,5,4)
         self.assertIsInstance(chess.__board__.get_piece(5,4),Pawn)
+        self.assertEqual(chess.turn(),'BLACK')
+
+    def test_move_moving_a_king(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(4,4,King('WHITE',board))
+        chess.move(4,4,5,4)
+        self.assertIsInstance(chess.__board__.get_piece(5,4),King)
         self.assertEqual(chess.turn(),'BLACK')
 
     # TURNS TEST

@@ -1,17 +1,21 @@
 from pieces import Piece
-from chess import Chess
 from moves import all_moves
 
 class King(Piece):
     white_str='♚'
     black_str='♔'
 
-    # ALL VALID POSITIONS
+    # ALL VALID POSITIONS ('for_all_moves' parameter is to avoid recursion when using 'all_moves()' function)
 
-    def valid_positions(self,from_row,from_col):
+    def valid_positions(self,from_row,from_col,for_all_moves=False):
         possible_positions=self.possible_positions_va(from_row,from_col)+self.possible_positions_vd(from_row,from_col)+self.possible_positions_hr(from_row,from_col)+self.possible_positions_hl(from_row,from_col)+self.possible_positions_dar(from_row,from_col)+self.possible_positions_dal(from_row,from_col)+self.possible_positions_ddr(from_row,from_col)+self.possible_positions_ddl(from_row,from_col)
-        all_moves=all_moves(self,self.get_color())
-        possible_positions=[item for item in possible_positions if item not in all_moves]
+        if for_all_moves==False:
+            full_moves=all_moves(self.__board__,self.get_opposite_color())
+            final_possible_positions=[]
+            for move in possible_positions:
+                if move not in full_moves:
+                    final_possible_positions.append(move)
+            return final_possible_positions
         return possible_positions
 
     # VERTICAL ASCENDANT MOVE
