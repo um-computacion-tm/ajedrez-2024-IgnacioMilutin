@@ -46,6 +46,11 @@ class TestBoard(unittest.TestCase):
         self.assertIsInstance(board.get_piece(0,0),Rook)
         self.assertIsNone(board.get_piece(2,0))
 
+    def test_get_piece_in_range_2(self):
+        board=Board()
+        self.assertIsInstance(board.get_piece(6,0),Pawn)
+        self.assertIsNone(board.get_piece(5,0))
+
     def test_get_piece_out_of_range_row_and_col(self):
         board = Board(for_test=True)
         with self.assertRaises(OutOfBoard) as exc:
@@ -81,6 +86,14 @@ class TestBoard(unittest.TestCase):
         self.assertIsNone(board.get_piece(0,0))
         board.set_piece(0,0,rook)
         self.assertIsInstance(board.get_piece(0,0),Rook)
+
+    def test_set_piece_in_range_2(self):
+        board=Board(for_test=True)
+        pawn=Pawn('WHITE',board)
+        board.set_piece(6,0,pawn)
+        self.assertIsInstance(board.get_piece(6,0),Pawn)
+        board.set_piece(5,0,pawn)
+        self.assertIsInstance(board.get_piece(5,0),Pawn)
 
     def test_set_piece_out_of_range_row_and_col(self):
         board=Board(for_test=True)

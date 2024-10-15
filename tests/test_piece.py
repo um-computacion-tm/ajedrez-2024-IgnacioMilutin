@@ -116,3 +116,6 @@ class TestPiece(unittest.TestCase):
         possible_positions=rook.valid_positions(4,4)
         validation=rook.is_row_col_in_valid_positions(3,3,possible_positions)
         self.assertFalse(validation)
+
+if __name__=='__main__':
+    unittest.main()

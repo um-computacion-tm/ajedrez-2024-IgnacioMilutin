@@ -3,7 +3,11 @@ from chess import Chess
 from pawn import Pawn
 from board import Board
 from king import King
-from exceptions import EmptyPosition,InvalidTurn,InvalidMove
+from queen import Queen
+from bishop import Bishop
+from rook import Rook
+from knight import Knight
+from exceptions import EmptyPosition,InvalidTurn,InvalidMove,InvalidPawnChange
 
 class TestChess(unittest.TestCase):
 
@@ -95,6 +99,120 @@ class TestChess(unittest.TestCase):
                 "7 | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ | \n"
                 "  ---------------------------------\n"
             ))
+        
+    # PAWN_CHANGE_VERIFICATION
+
+    def test_pawn_verification_its_a_pawn_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,Pawn("BLACK", board))
+        self.assertTrue(chess.pawn_change_verification(7,4))
+    
+    def test_pawn_verification_its_a_pawn_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        self.assertTrue(chess.pawn_change_verification(0,4))
+
+    def test_pawn_verification_its_not_a_pawn_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,King("BLACK", board))
+        self.assertFalse(chess.pawn_change_verification(0,4))
+
+    def test_pawn_verification_its_not_a_pawn_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,King("WHITE", board))
+        self.assertFalse(chess.pawn_change_verification(7,4))
+
+    # PAWN_CHANGE_ACTION
+
+    def test_pawn_action_convert_to_queen_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,Pawn("BLACK", board))
+        chess.pawn_change_action('Queen',7,4)
+        self.assertIsInstance(board.get_piece(7,4),Queen)
+        self.assertEqual(board.get_piece(7,4).get_color(),'BLACK')
+
+    def test_pawn_action_convert_to_bishop_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,Pawn("BLACK", board))
+        chess.pawn_change_action('Bishop',7,4)
+        self.assertIsInstance(board.get_piece(7,4),Bishop)
+        self.assertEqual(board.get_piece(7,4).get_color(),'BLACK')
+
+    def test_pawn_action_convert_to_rook_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,Pawn("BLACK", board))
+        chess.pawn_change_action('Rook',7,4)
+        self.assertIsInstance(board.get_piece(7,4),Rook)
+        self.assertEqual(board.get_piece(7,4).get_color(),'BLACK')
+
+    def test_pawn_action_convert_to_knight_black_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(7,4,Pawn("BLACK", board))
+        chess.pawn_change_action('Knight',7,4)
+        self.assertIsInstance(board.get_piece(7,4),Knight)
+        self.assertEqual(board.get_piece(7,4).get_color(),'BLACK')
+
+    def test_pawn_action_convert_to_queen_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        chess.pawn_change_action('Queen',0,4)
+        self.assertIsInstance(board.get_piece(0,4),Queen)
+        self.assertEqual(board.get_piece(0,4).get_color(),'WHITE')
+
+    def test_pawn_action_convert_to_bishop_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        chess.pawn_change_action('Bishop',0,4)
+        self.assertIsInstance(board.get_piece(0,4),Bishop)
+        self.assertEqual(board.get_piece(0,4).get_color(),'WHITE')
+
+    def test_pawn_action_convert_to_rook_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        chess.pawn_change_action('Rook',0,4)
+        self.assertIsInstance(board.get_piece(0,4),Rook)
+        self.assertEqual(board.get_piece(0,4).get_color(),'WHITE')
+
+
+    def test_pawn_action_convert_to_knight_white_piece_change(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        chess.pawn_change_action('Knight',0,4)
+        self.assertIsInstance(board.get_piece(0,4),Knight)
+        self.assertEqual(board.get_piece(0,4).get_color(),'WHITE')
+
+    def test_pawn_action_wrong_entry(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(0,4,Pawn("WHITE", board))
+        with self.assertRaises(InvalidPawnChange) as exc:
+            chess.pawn_change_action('hola',0,4)
+        self.assertEqual(exc.exception.message,"Cant change pawn for the given input, please select one of the granted options(Queen, Bishop, Rook or Knight): ")
 
 if __name__=='__main__':
     unittest.main()
