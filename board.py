@@ -42,22 +42,22 @@ class Board:
     # GETS THE PIECE OF A SPECIFIC ROW AND COLUMN
 
     def get_piece(self,row,col):
-        if not 0 <= row < 8 and not 0 <= col < 8:
+        if not (0 <= row < 8) and not (0 <= col < 8):
             raise OutOfBoard()
-        elif not 0 <= row < 8:
+        elif not (0 <= row < 8):
             raise RowOutOfBoard()
-        elif not 0 <= col < 8:
+        elif not (-1 < col < 8):
             raise ColumnOutOfBoard()
         else: return self.__positions__[row][col]
     
     # SETS A PIECE IN A SPECIFIC ROW AND COLUMN
 
     def set_piece(self, row, col, piece):
-        if not (0 <= row < 8 or 0 <= col < 8):
+        if not (0 <= row < 8) and not (0 <= col < 8):
             raise OutOfBoard()
-        elif not 0 <= row < 8:
+        elif not (0 <= row < 8):
             raise RowOutOfBoard()
-        elif not 0 <= col < 8:
+        elif not (0 <= col < 8):
             raise ColumnOutOfBoard()
         else: self.__positions__[row][col] = piece
 

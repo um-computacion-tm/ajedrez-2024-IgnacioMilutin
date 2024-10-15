@@ -436,3 +436,6 @@ class TestKing(unittest.TestCase):
         board.set_piece(5,1,Knight("WHITE", board))
         possible=king.valid_positions(4,4)
         self.assertEqual(possible,[(3,4),(5,4),(3,5),(3,3),(5,5),(5,3)])
+
+if __name__=='__main__':
+    unittest.main()

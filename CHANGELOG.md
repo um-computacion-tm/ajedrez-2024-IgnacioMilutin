@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2024-10-15
+
+### Added
+
+- Pawn promotion methods, includes the verification and action methods in chess and the input for the selected piece to replace and its execution in cli
+- Exception for a wrong pawn change option
+- Tests for all new methods mentioned before
+
+### Changed
+
+- King valid_positions doesnt need obligatory parameter 'for_all_moves', so chess move method is updated due to that change'
+
 ## [0.1.15] - 2024-10-14
 
 ### Added

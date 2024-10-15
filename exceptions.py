@@ -23,3 +23,6 @@ class RowOutOfBoard(OutOfBoard):
 
 class ColumnOutOfBoard(OutOfBoard):
     message='La Columna indicada se encuentra fuera del tablero'
+
+class InvalidPawnChange(Exception):
+    message='Cant change pawn for the given input, please select one of the granted options(Queen, Bishop, Rook or Knight): '

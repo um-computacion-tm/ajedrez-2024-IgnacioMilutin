@@ -186,3 +186,6 @@ class TestBishop(unittest.TestCase):
         possible_positions=bishop.valid_positions(4,4)
         possible=bishop.is_row_col_in_valid_positions(4,3,possible_positions)
         self.assertFalse(possible)
+
+if __name__=='__main__':
+    unittest.main()
