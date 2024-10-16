@@ -21,7 +21,7 @@ class Pawn(Piece):
                 possible.append((from_row+1,from_col+1))
             if other_piece_left is not None and other_piece_left.__color__=='WHITE':
                 possible.append((from_row+1,from_col-1))
-        elif self.__color__=='WHITE':
+        if self.__color__=='WHITE':
             other_piece_right = self.__board__.get_piece(from_row - 1, from_col + 1)
             other_piece_left = self.__board__.get_piece(from_row - 1, from_col - 1)
             if other_piece_right is not None and other_piece_right.__color__ == "BLACK":

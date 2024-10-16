@@ -6,7 +6,7 @@ class Piece:
     def __str__(self):
         if self.__color__ == "WHITE":
             return self.white_str
-        else: return self.black_str
+        return self.black_str
         
     def get_color(self):
         return self.__color__
@@ -14,11 +14,11 @@ class Piece:
     def get_opposite_color(self):
         if self.__color__=='WHITE':
             return 'BLACK'
-        else: return 'WHITE'
+        return 'WHITE'
 
     # CHECKS IF TO_ROW AND TO_COL ARE IN POSSIBEL POSITIONS:
 
     def is_row_col_in_valid_positions(self,to_row,to_col,possible_positions):
         if (to_row,to_col) in possible_positions:
             return True
-        else: False
+        False
