@@ -13,7 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - All updates are to fix codeclimate issues
-- Now Knight have combined moves in: (vdr and hrd), (vdl and hld) and valid_positions due to this changes
+- Now Knight have combined moves in: (vdr and hrd), (vdl and hld), (val and hla), (var and hra) and valid_positions due to this changes
+- Moves logic now are combined in: (va and hl), (vd and hr), (dar and ddr), (dal and ddl) and individual moves have one more parameter to adapt to the new logic
 
 ### Deleted
 
