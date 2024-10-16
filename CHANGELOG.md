@@ -6,9 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.2.1] - 2024-10-16
 
+### Added
+
+- Tests for new move due to the changes below
+
 ### Changed
 
-- Updates to fix codeclimate issues
+- All updates are to fix codeclimate issues
+- Now Knight have combined moves in: (vdr and hrd), (vdl and hld) and valid_positions due to this changes
+
+### Deleted
+
+- All individual knights moves and their tests because of the changes
 
 ## [0.2.1] - 2024-10-15
 
