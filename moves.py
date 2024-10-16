@@ -7,7 +7,7 @@ def all_moves(board,color):
                 piece=board.get_piece(row,col)
                 if piece is None:
                     continue
-                elif piece.get_color()==color:
+                if piece.get_color()==color:
                     if type(piece).__name__=='King':
                         all_moves+=piece.valid_positions(row,col,for_all_moves=True)
                     else: all_moves+=piece.valid_positions(row,col)
@@ -24,8 +24,7 @@ def possible_positions_vd(piece,row,col):
                 if other_piece.__color__ != piece.__color__:
                     possibles.append((next_row, col))  
                 break  
-            else:
-                possibles.append((next_row, col))  
+            else:possibles.append((next_row, col))  
         return possibles
 
 # POSSIBLE VERTICAL ASCENDANT POSITIONS TO MOVE A PIECE TO:

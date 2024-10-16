@@ -42,24 +42,24 @@ class Board:
     # GETS THE PIECE OF A SPECIFIC ROW AND COLUMN
 
     def get_piece(self,row,col):
-        if not (0 <= row < 8) and not (0 <= col < 8):
+        if 0 < row > 7 and 0 < col > 7:
             raise OutOfBoard()
-        elif not (0 <= row < 8):
+        if 0 < row > 7:
             raise RowOutOfBoard()
-        elif not (-1 < col < 8):
+        if 0 < col > 7:
             raise ColumnOutOfBoard()
-        else: return self.__positions__[row][col]
+        return self.__positions__[row][col]
     
     # SETS A PIECE IN A SPECIFIC ROW AND COLUMN
 
     def set_piece(self, row, col, piece):
-        if not (0 <= row < 8) and not (0 <= col < 8):
+        if 0 < row > 7 and 0 < col > 7:
             raise OutOfBoard()
-        elif not (0 <= row < 8):
+        if 0 < row > 7:
             raise RowOutOfBoard()
-        elif not (0 <= col < 8):
+        if 0 < col > 7:
             raise ColumnOutOfBoard()
-        else: self.__positions__[row][col] = piece
+        self.__positions__[row][col] = piece
 
     # MOVES A PIECE FROM A CELL TO OTHER CELL
 
@@ -71,34 +71,24 @@ class Board:
     # SETS ROOKS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def rook_board_definition(self):
-        self.__positions__[0][0]=Rook('BLACK',self)
-        self.__positions__[0][7]=Rook('BLACK',self)
-        self.__positions__[7][7]=Rook('WHITE',self)
-        self.__positions__[7][0]=Rook('WHITE',self)
-
+        rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
+        cols=[7,0]
+        for (row,color) in rows_and_colors:
+            for col in cols:
+                self.__positions__[row][col]=Rook(color,self)
+        
     # SETS PAWNS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def pawn_board_definition(self):
-        self.__positions__[6][0]=Pawn('WHITE',self)
-        self.__positions__[6][1]=Pawn('WHITE',self)
-        self.__positions__[6][2]=Pawn('WHITE',self)
-        self.__positions__[6][3]=Pawn('WHITE',self)
-        self.__positions__[6][4]=Pawn('WHITE',self)
-        self.__positions__[6][5]=Pawn('WHITE',self)
-        self.__positions__[6][6]=Pawn('WHITE',self)
-        self.__positions__[6][7]=Pawn('WHITE',self)
-        self.__positions__[1][0]=Pawn('BLACK',self)
-        self.__positions__[1][1]=Pawn('BLACK',self)
-        self.__positions__[1][2]=Pawn('BLACK',self)
-        self.__positions__[1][3]=Pawn('BLACK',self)
-        self.__positions__[1][4]=Pawn('BLACK',self)
-        self.__positions__[1][5]=Pawn('BLACK',self)
-        self.__positions__[1][6]=Pawn('BLACK',self)
-        self.__positions__[1][7]=Pawn('BLACK',self)
+        rows_and_colors=[(1,'BLACK'),(6,'WHITE')]
+        cols=[0,1,2,3,4,5,6,7]
+        for (row,color) in rows_and_colors:
+            for col in cols:
+                self.__positions__[row][col]=Pawn(color,self)
     
     # SETS KINGS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
-    def king_board_definition(self):
+    def king_board_definition(self):    
         self.__positions__[7][4]=King('WHITE',self)
         self.__positions__[0][4]=King('BLACK',self)
 
@@ -111,15 +101,17 @@ class Board:
     # SETS BISHOPS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def bishop_board_definition(self):
-        self.__positions__[7][2]=Bishop('WHITE',self)
-        self.__positions__[7][5]=Bishop('WHITE',self)
-        self.__positions__[0][2]=Bishop('BLACK',self)
-        self.__positions__[0][5]=Bishop('BLACK',self)
+        rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
+        cols=[2,5]
+        for (row,color) in rows_and_colors:
+            for col in cols:
+                self.__positions__[row][col]=Bishop(color,self)
 
     # SETS KNIGHTS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def knight_board_definition(self):
-        self.__positions__[7][1]=Knight('WHITE',self)
-        self.__positions__[7][6]=Knight('WHITE',self)
-        self.__positions__[0][1]=Knight('BLACK',self)
-        self.__positions__[0][6]=Knight('BLACK',self)
+        rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
+        cols=[1,6]
+        for (row,color) in rows_and_colors:
+            for col in cols:
+                self.__positions__[row][col]=Knight(color,self)
