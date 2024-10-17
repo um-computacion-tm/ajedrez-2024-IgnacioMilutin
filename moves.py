@@ -1,18 +1,16 @@
 # LIST OF ALL POSSIBLE MOVES FOR ALL PIECES OF A COLOR
 
 def all_moves(board,color):
-        all_moves=[]
-        for row in range(8):
-            for col in range(8):
-                piece=board.get_piece(row,col)
-                if piece is None:
-                    continue
-                if piece.get_color()==color:
-                    if type(piece).__name__=='King':
-                        all_moves+=piece.valid_positions(row,col,for_all_moves=True)
-                    else: all_moves+=piece.valid_positions(row,col)
-                else: continue
-        return all_moves
+    all_moves=[]
+    for row in range(8):
+        for col in range(8):
+            piece=board.get_piece(row,col)
+            if piece is None or piece.get_color() != color:
+                continue
+            if type(piece).__name__=='King':
+                all_moves+=piece.valid_positions(row,col,for_all_moves=type(piece).__name__=='King')
+            else: all_moves+=piece.valid_positions(row,col)
+    return all_moves
 
 # POISBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
