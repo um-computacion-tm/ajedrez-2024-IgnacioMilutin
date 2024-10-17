@@ -130,6 +130,20 @@ class TestChess(unittest.TestCase):
         board.set_piece(7,4,King("WHITE", board))
         self.assertFalse(chess.pawn_change_verification(7,4))
 
+    def test_pawn_verification_its_a_pawn_white_piece_change_not_in_the_end(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(1,4,Pawn("WHITE", board))
+        self.assertFalse(chess.pawn_change_verification(1,4))
+
+    def test_pawn_verification_its_a_pawn_black_piece_change_not_in_the_end(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(6,4,Pawn("BLACK", board))
+        self.assertFalse(chess.pawn_change_verification(6,4))
+
     # PAWN_CHANGE_ACTION
 
     def test_pawn_action_convert_to_queen_black_piece_change(self):
