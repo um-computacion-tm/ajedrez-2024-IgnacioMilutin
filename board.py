@@ -72,16 +72,9 @@ class Board:
 
     def board_definition_for_bishop_rook_and_knight(self,type_piece):
         rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
-        cols_knight=[1,6]
-        cols_bishop=[2,5]
-        cols_rook=[7,0]
+        piece_and_cols={Knight:[1,6],Bishop:[2,5],Rook:[7,0]}
+        cols=piece_and_cols.get(type_piece)
         for (row,color) in rows_and_colors:
-            if type_piece==Knight:
-                cols=cols_knight
-            if type_piece==Rook:
-                cols=cols_rook
-            if type_piece==Bishop:
-                cols=cols_bishop
             for col in cols:
                 self.__positions__[row][col]=type_piece(color,self)
         

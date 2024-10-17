@@ -12,37 +12,30 @@ class Pawn(Piece):
    
     # PAWN EATING A PIECE
 
-    def possible_positions_eat(self, from_row, from_col):
+    def possible_positions_eat(self,from_row,from_col):
         possible=[]
-        if self.__color__ == "BLACK":
-            other_piece_right = self.__board__.get_piece(from_row + 1, from_col + 1)
-            other_piece_left = self.__board__.get_piece(from_row + 1, from_col - 1)
-            if other_piece_right is not None and other_piece_right.__color__ == "WHITE":
-                possible.append((from_row+1,from_col+1))
-            if other_piece_left is not None and other_piece_left.__color__=='WHITE':
-                possible.append((from_row+1,from_col-1))
-        if self.__color__=='WHITE':
-            other_piece_right = self.__board__.get_piece(from_row - 1, from_col + 1)
-            other_piece_left = self.__board__.get_piece(from_row - 1, from_col - 1)
-            if other_piece_right is not None and other_piece_right.__color__ == "BLACK":
-                possible.append((from_row-1,from_col+1))
-            if other_piece_left is not None and other_piece_left.__color__=='BLACK':
-                possible.append((from_row-1,from_col-1))
+        colors_and_rows={'BLACK':1,'WHITE':-1}
+        col_left=-1
+        col_right=1
+        move_row=colors_and_rows[self.__color__]
+        next_row=from_row+move_row
+        other_piece_right=self.__board__.get_piece(next_row,from_col+col_right)
+        other_piece_left=self.__board__.get_piece(next_row,from_col+col_left)
+        if other_piece_right is not None and other_piece_right.__color__!=self.__color__:
+            possible.append((next_row,from_col+col_right))
+        if other_piece_left is not None and other_piece_left.__color__!=self.__color__:
+            possible.append((next_row,from_col+col_left))
         return possible
     
-
     # MOVING A PAWN RULES
 
-    def possible_positions_move(self, from_row, from_col):
-        if self.__color__ == "BLACK":
-            if self.__board__.get_piece(from_row + 1, from_col) is None:
-                if from_row == 1 and self.__board__.get_piece(from_row + 2, from_col) is None:
-                    return [(from_row + 1, from_col),(from_row + 2, from_col)]
-                else: return [(from_row + 1, from_col)]
-            else: return []
-        else:
-            if self.__board__.get_piece(from_row-1,from_col) is None:
-                if from_row==6 and self.__board__.get_piece(from_row-2,from_col) is None:
-                    return [(from_row-1,from_col),(from_row-2,from_col)]
-                else: return [(from_row-1,from_col)]
-            else: return []
+    def possible_positions_move(self,from_row,from_col):
+        colors_and_rows={'BLACK':(1,1),'WHITE':(-1,6)}
+        move_row,start=colors_and_rows[self.__color__]
+        next_row=from_row+move_row
+        if self.__board__.get_piece(next_row,from_col) is None:
+            possibles=[(next_row,from_col)]
+            if from_row==start and self.__board__.get_piece(next_row+move_row,from_col) is None:
+                possibles.append((next_row+move_row,from_col))
+            return possibles
+        else: return []
