@@ -68,14 +68,22 @@ class Board:
         self.set_piece(to_row,to_col,origin)
         self.set_piece(from_row,from_col,None)
 
-    # SETS ROOKS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+    # DEFINTION TO SET BISHOP, KNIGHT AND ROOK IN THEIR INITIAL POSITIONS
 
-    def rook_board_definition(self):
+    def board_definition_for_bishop_rook_and_knight(self,type_piece):
         rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
-        cols=[7,0]
+        cols_knight=[1,6]
+        cols_bishop=[2,5]
+        cols_rook=[7,0]
         for (row,color) in rows_and_colors:
+            if type_piece==Knight:
+                cols=cols_knight
+            if type_piece==Rook:
+                cols=cols_rook
+            if type_piece==Bishop:
+                cols=cols_bishop
             for col in cols:
-                self.__positions__[row][col]=Rook(color,self)
+                self.__positions__[row][col]=type_piece(color,self)
         
     # SETS PAWNS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
@@ -85,33 +93,38 @@ class Board:
         for (row,color) in rows_and_colors:
             for col in cols:
                 self.__positions__[row][col]=Pawn(color,self)
-    
+
+    # DEFINITION TO SET KING AND QUEEN IN THEIR INITIAL POSITIONS
+
+    def board_definition_for_king_and_queen(self,type_piece):
+        rows_and_colors=[(7,'WHITE'),(0,'BLACK')]
+        for (row,color) in rows_and_colors:
+            if type_piece==King:
+                col=4
+            else: col=3
+            self.__positions__[row][col]=type_piece(color,self)
+
     # SETS KINGS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def king_board_definition(self):    
-        self.__positions__[7][4]=King('WHITE',self)
-        self.__positions__[0][4]=King('BLACK',self)
+        self.board_definition_for_king_and_queen(King)
 
     # SETS QUEENS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def queen_board_definition(self):
-        self.__positions__[7][3]=Queen('WHITE',self)
-        self.__positions__[0][3]=Queen('BLACK',self)
+        self.board_definition_for_king_and_queen(Queen)
+
+    # SETS ROOKS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def rook_board_definition(self):
+        self.board_definition_for_bishop_rook_and_knight(Rook)
 
     # SETS BISHOPS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def bishop_board_definition(self):
-        rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
-        cols=[2,5]
-        for (row,color) in rows_and_colors:
-            for col in cols:
-                self.__positions__[row][col]=Bishop(color,self)
+        self.board_definition_for_bishop_rook_and_knight(Bishop)
 
     # SETS KNIGHTS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def knight_board_definition(self):
-        rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
-        cols=[1,6]
-        for (row,color) in rows_and_colors:
-            for col in cols:
-                self.__positions__[row][col]=Knight(color,self)
+        self.board_definition_for_bishop_rook_and_knight(Knight)
