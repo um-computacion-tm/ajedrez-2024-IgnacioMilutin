@@ -16,7 +16,7 @@ def all_moves(board,color):
 
 # POISBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
-def possible_positions_va_vd_hr_hl(piece,row,col,direction):
+def possible_positions_vertical_and_horizontal(piece,row,col,direction):
     possibles=[]
     directions={'va':(row-1,-1,-1),'hl':(col-1,-1,-1),'vd':(row+1,8,1),'hr':(col+1,8,1)}
     start,end,step=directions[direction]
@@ -37,26 +37,26 @@ def possible_positions_va_vd_hr_hl(piece,row,col,direction):
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
 
 def possible_positions_vd(piece,row,col):
-    return possible_positions_va_vd_hr_hl(piece,row,col,'vd')
+    return possible_positions_vertical_and_horizontal(piece,row,col,'vd')
 
 # POSSIBLE VERTICAL ASCENDANT POSITIONS TO MOVE A PIECE TO:
 
 def possible_positions_va(piece,row,col):
-    return possible_positions_va_vd_hr_hl(piece,row,col,'va')
+    return possible_positions_vertical_and_horizontal(piece,row,col,'va')
 
 # POSSIBLE HORIZONTAL RIGHT POSITIONS TO MOVE A PIECE TO:
 
 def possible_positions_hr(piece,row,col):
-    return possible_positions_va_vd_hr_hl(piece,row,col,'hr')
+    return possible_positions_vertical_and_horizontal(piece,row,col,'hr')
 
 # POSSIBLE HORIZONTAL LEFT POSITIONS TO MOVE A PIECE TO:
 
 def possible_positions_hl(piece,row,col):
-    return possible_positions_va_vd_hr_hl(piece,row,col,'hl')
+    return possible_positions_vertical_and_horizontal(piece,row,col,'hl')
 
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
 
-def possible_positions_dar_ddr_dal_ddl(piece,row,col,direction):
+def possible_positions_diagonal(piece,row,col,direction):
     possibles=[]
     directions={'dar':(row-1,-1,-1,1),'ddr':(row+1,8,1,1),'dal':(row-1,-1,-1,-1),'ddl':(row+1,8,1,-1)}
     start,end,step,col_step=directions[direction]
@@ -78,19 +78,19 @@ def possible_positions_dar_ddr_dal_ddl(piece,row,col,direction):
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT POSITIONS TO A PIECE TO:
 
 def possible_positions_dar(piece,row,col):
-    return possible_positions_dar_ddr_dal_ddl(piece,row,col,'dar')
+    return possible_positions_diagonal(piece,row,col,'dar')
 
 # POSSIBLE DIAGONAL DESCENDANT TO THE RIGHT POSITIONS TO A PIECE TO:
 
 def possible_positions_ddr(piece,row,col):
-    return possible_positions_dar_ddr_dal_ddl(piece,row,col,'ddr')
+    return possible_positions_diagonal(piece,row,col,'ddr')
 
 # POSSIBLE DIAGONAL ASCENDANT TO THE LEFT POSITIONS TO A PIECE TO:
 
 def possible_positions_dal(piece,row,col):
-    return possible_positions_dar_ddr_dal_ddl(piece,row,col,'dal')
+    return possible_positions_diagonal(piece,row,col,'dal')
 
 # POSSIBLE DIAGONAL DESCENDANT TO THE LEFT POSITIONS TO A PIECE TO:
 
 def possible_positions_ddl(piece,row,col):
-    return possible_positions_dar_ddr_dal_ddl(piece,row,col,'ddl')
+    return possible_positions_diagonal(piece,row,col,'ddl')

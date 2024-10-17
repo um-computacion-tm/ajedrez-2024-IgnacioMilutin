@@ -23,16 +23,8 @@ class King(Piece):
     def possible_positions_va(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row-1,col)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row-1,col))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row-1,col))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row-1,col))
-            else: return[]
         return possibles
     
     # VERTICAL DESCENDANT MOVE
@@ -40,16 +32,8 @@ class King(Piece):
     def possible_positions_vd(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row+1,col)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row+1,col))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row+1,col))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row+1,col))
-            else: return[]
         return possibles
     
     # HORIZONTAL RIGHT MOVE
@@ -57,16 +41,8 @@ class King(Piece):
     def possible_positions_hr(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row,col+1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row,col+1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row,col+1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row,col+1))
-            else: return[]
         return possibles
     
     # HORIZONTAL LEFT MOVE
@@ -74,16 +50,8 @@ class King(Piece):
     def possible_positions_hl(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row,col-1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row,col-1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row,col-1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row,col-1))
-            else: return[]
         return possibles
     
     # DIAGONAL ASCENDANT TO THE RIGHT MOVE
@@ -91,16 +59,8 @@ class King(Piece):
     def possible_positions_dar(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row-1,col+1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row-1,col+1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row-1,col+1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row-1,col+1))
-            else: return[]
         return possibles
     
     # DIAGONAL ASCENDANT TO THE LEFT MOVE
@@ -108,16 +68,8 @@ class King(Piece):
     def possible_positions_dal(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row-1,col-1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row-1,col-1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row-1,col-1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row-1,col-1))
-            else: return[]
         return possibles
     
     # DIAGONAL DESCENDANT TO THE RIGHT MOVE
@@ -125,16 +77,8 @@ class King(Piece):
     def possible_positions_ddr(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row+1,col+1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row+1,col+1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row+1,col+1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row+1,col+1))
-            else: return[]
         return possibles
     
     # DIAGONAL DESCENDANT TO THE LEFT MOVE
@@ -142,14 +86,6 @@ class King(Piece):
     def possible_positions_ddl(self,row,col):
         possibles=[]
         other_piece=self.__board__.get_piece(row+1,col-1)
-        if other_piece is None:
+        if other_piece is None or other_piece.__color__!=self.__color__:
             possibles.append((row+1,col-1))
-        elif self.__color__=='BLACK':
-            if other_piece is not None and other_piece.__color__=='WHITE':
-                possibles.append((row+1,col-1))
-            else: return[]
-        else:
-            if other_piece is not None and other_piece.__color__=='BLACK':
-                possibles.append((row+1,col-1))
-            else: return[]
         return possibles
