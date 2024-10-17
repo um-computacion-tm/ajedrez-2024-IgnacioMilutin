@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Updated moves of moves.py to be all together (va,vd,hl and hr)
+- Updated moves of moves.py to be all together (va,vd,hl and hr) and (dal,dar,ddl,ddr)
+- simplified kings moves 
 
 ## [0.2.1] - 2024-10-16
 
