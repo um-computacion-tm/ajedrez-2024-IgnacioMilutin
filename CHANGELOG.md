@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Updated moves of moves.py to be all together (va,vd,hl and hr) and (dal,dar,ddl,ddr)
 - simplified kings moves 
+- change boards pieces definition, now knight,bishop and rook are together and king and queen are together
 
 ## [0.2.1] - 2024-10-16
 
