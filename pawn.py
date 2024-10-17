@@ -11,22 +11,20 @@ class Pawn(Piece):
         return possible_positions
    
     # PAWN EATING A PIECE
-
+    
     def possible_positions_eat(self,from_row,from_col):
         possible=[]
         colors_and_rows={'BLACK':1,'WHITE':-1}
-        col_left=-1
-        col_right=1
+        cols=[1,-1]
         move_row=colors_and_rows[self.__color__]
         next_row=from_row+move_row
-        other_piece_right=self.__board__.get_piece(next_row,from_col+col_right)
-        other_piece_left=self.__board__.get_piece(next_row,from_col+col_left)
-        if other_piece_right is not None and other_piece_right.__color__!=self.__color__:
-            possible.append((next_row,from_col+col_right))
-        if other_piece_left is not None and other_piece_left.__color__!=self.__color__:
-            possible.append((next_row,from_col+col_left))
+        for next_col in cols:
+            other_piece=self.__board__.get_piece(next_row,from_col+next_col)
+            if other_piece is not None and other_piece.__color__!=self.__color__:
+                possible.append((next_row,from_col+next_col))
         return possible
     
+
     # MOVING A PAWN RULES
 
     def possible_positions_move(self,from_row,from_col):
