@@ -70,22 +70,16 @@ class Board:
 
     # DEFINTION TO SET BISHOP, KNIGHT AND ROOK IN THEIR INITIAL POSITIONS
 
-    def board_definition_for_bishop_rook_and_knight(self,type_piece):
+    def board_definition_for_bishop_rook_knight_and_pawn(self,type_piece):
         rows_and_colors=[(0,'BLACK'),(7,'WHITE')]
-        piece_and_cols={Knight:[1,6],Bishop:[2,5],Rook:[7,0]}
+        rows_and_colors_pawn=[(1,'BLACK'),(6,'WHITE')]
+        piece_and_cols={Knight:[1,6],Bishop:[2,5],Rook:[7,0],Pawn:[0,1,2,3,4,5,6,7]}
+        if type_piece==Pawn:
+            rows_and_colors=rows_and_colors_pawn
         cols=piece_and_cols.get(type_piece)
         for (row,color) in rows_and_colors:
             for col in cols:
                 self.__positions__[row][col]=type_piece(color,self)
-        
-    # SETS PAWNS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
-
-    def pawn_board_definition(self):
-        rows_and_colors=[(1,'BLACK'),(6,'WHITE')]
-        cols=[0,1,2,3,4,5,6,7]
-        for (row,color) in rows_and_colors:
-            for col in cols:
-                self.__positions__[row][col]=Pawn(color,self)
 
     # DEFINITION TO SET KING AND QUEEN IN THEIR INITIAL POSITIONS
 
@@ -96,6 +90,11 @@ class Board:
                 col=4
             else: col=3
             self.__positions__[row][col]=type_piece(color,self)
+        
+    # SETS PAWNS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
+
+    def pawn_board_definition(self):
+        self.board_definition_for_bishop_rook_knight_and_pawn(Pawn)
 
     # SETS KINGS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
@@ -110,14 +109,14 @@ class Board:
     # SETS ROOKS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def rook_board_definition(self):
-        self.board_definition_for_bishop_rook_and_knight(Rook)
+        self.board_definition_for_bishop_rook_knight_and_pawn(Rook)
 
     # SETS BISHOPS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def bishop_board_definition(self):
-        self.board_definition_for_bishop_rook_and_knight(Bishop)
+        self.board_definition_for_bishop_rook_knight_and_pawn(Bishop)
 
     # SETS KNIGHTS IN THEIR INITIAL POSITIONS WHEN STARTING THE BOARD 
 
     def knight_board_definition(self):
-        self.board_definition_for_bishop_rook_and_knight(Knight)
+        self.board_definition_for_bishop_rook_knight_and_pawn(Knight)

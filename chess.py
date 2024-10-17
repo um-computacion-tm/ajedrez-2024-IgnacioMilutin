@@ -51,11 +51,8 @@ class Chess:
     # VERIFIES IF THE PIECE THAT HITTED THE END IS A PAWN
 
     def pawn_change_verification(self,row,col):
-        if row==7 or row==0:
-            if isinstance(self.__board__.get_piece(row,col),Pawn):
-                return True
-            else: return False
-        else: return False
+        if (row==7 or row==0) and (isinstance(self.__board__.get_piece(row,col),Pawn)):
+            return True
 
     # PAWN CONVERT TO ANY PIECE
 
