@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - valid_positions_rook_and_bishop unites the 2 valid positions in one method
+- Rules function in chess to use in the cli to verifier rules after every move
 
 ### Changed
 

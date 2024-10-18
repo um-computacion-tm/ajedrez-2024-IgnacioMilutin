@@ -48,6 +48,16 @@ class Chess:
             self.__turn__='BLACK'
         else: self.__turn__='WHITE'
 
+    def rules(self,to_row,to_col):
+        if self.pawn_change_verification(to_row,to_col)==True:
+            while True:
+                try:
+                    new_piece=input('Type the piece you would like to replace the pawn(Queen, Rook, Bishop or Knight): ')
+                    self.pawn_change_action(new_piece,to_row,to_col)
+                    break
+                except Exception as pawn_change_exception: 
+                    print(pawn_change_exception)
+
     # VERIFIES IF THE PIECE THAT HITTED THE END IS A PAWN
 
     def pawn_change_verification(self,row,col):
