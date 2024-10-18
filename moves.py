@@ -1,41 +1,33 @@
 # LIST OF ALL POSSIBLE MOVES FOR ALL PIECES OF A COLOR
 
 def all_moves(board,color):
-    full_moves=[]
-    valid_positions_methods = {
-        'King': lambda piece, row, col: piece.valid_positions(row, col, for_all_moves=True),
-        'Queen': lambda piece, row, col: piece.valid_positions(row, col),
-        'Rook': lambda piece, row, col: piece.valid_positions(row, col),
-        'Pawn': lambda piece, row, col: piece.valid_positions(row, col),
-        'Knight': lambda piece, row, col: piece.valid_positions(row, col),
-        'Bishop': lambda piece, row, col: piece.valid_positions(row, col)}
+    all_moves=[]
     for row in range(8):
         for col in range(8):
-            piece = board.get_piece(row, col)
-            if piece is not None and piece.get_color() == color:
-                piece_type = type(piece).__name__
-                full_moves.extend(valid_positions_methods[piece_type](piece, row, col))
-    return full_moves
+            piece=board.get_piece(row,col)
+            if piece is None or piece.get_color() != color:
+                continue
+            if type(piece).__name__=='King':
+                all_moves+=piece.valid_positions(row,col,for_all_moves=type(piece).__name__=='King')
+            else: all_moves+=piece.valid_positions(row,col)
+    return all_moves
 
 # POISBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
-def possible_positions_vertical_and_horizontal(piece,row,col,direction):
-    possibles=[]
-    directions={'va':(row-1,-1,-1),'hl':(col-1,-1,-1),'vd':(row+1,8,1),'hr':(col+1,8,1)}
-    start,end,step=directions[direction]
-    for next_row_or_col in range(start,end,step):
-        if direction=='va' or direction=='vd':
-            other_piece = piece.__board__.get_piece(next_row_or_col, col)
-            new_position=(next_row_or_col,col)
-        else: 
-            other_piece = piece.__board__.get_piece(row,next_row_or_col)
-            new_position=(row,next_row_or_col)
+def possible_positions_vertical_and_horizontal(piece, row, col, direction):
+    possibles = []
+    directions = {'va': (row - 1, -1, -1),'hl': (col - 1, -1, -1),'vd': (row + 1, 8, 1),'hr': (col + 1, 8, 1)}
+    start, end, step = directions[direction]
+    for next_row_or_col in range(start, end, step):
+        new_position = (next_row_or_col, col) if direction in ('va', 'vd') else (row, next_row_or_col)
+        other_piece = piece.__board__.get_piece(*new_position)
         if other_piece is not None:
             if other_piece.__color__ != piece.__color__:
                 possibles.append(new_position)
             break
         possibles.append(new_position)
     return possibles
+    
 
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
 
