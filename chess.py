@@ -52,15 +52,19 @@ class Chess:
 
     def rules(self, to_row, to_col):
         if self.pawn_change_verification(to_row, to_col):
-            while True:
-                new_piece = input('Type the piece you would like to replace the pawn (Queen, Rook, Bishop or Knight): ')
+            while True:  
+                new_piece = self.ask_for_piece() 
                 try:
-                    self.pawn_change_action(new_piece, to_row, to_col)
-                    break
-                except Exception as pawn_change_exception:
-                    print(pawn_change_exception)
-                    continue
+                    self.pawn_change_action(new_piece, to_row, to_col)  
+                    break 
+                except InvalidPawnChange as pawn_change_exception:
+                    print(pawn_change_exception) 
+                    continue  
 
+    def ask_for_piece(self):
+        return input('Type the piece you would like to replace the pawn (Queen, Rook, Bishop or Knight): ')
+        
+    
     # VERIFIES IF THE PIECE THAT HITTED THE END IS A PAWN
 
     def pawn_change_verification(self,row,col):
@@ -69,11 +73,11 @@ class Chess:
 
     # PAWN CONVERT TO ANY PIECE
 
-    def pawn_change_action(self,new_piece,row,col):
-        pawn=self.__board__.get_piece(row,col)
-        pieces={'queen':Queen,'rook':Rook,'bishop':Bishop,'knight':Knight}
-        new_piece=pieces.get(new_piece.lower())
-        if new_piece:
-            self.__board__.set_piece(row,col,new_piece(pawn.get_color(),self.__board__))
+    def pawn_change_action(self, new_piece, row, col):
+        pawn = self.__board__.get_piece(row, col)
+        pieces = {'queen': Queen, 'rook': Rook, 'bishop': Bishop, 'knight': Knight}
+        new_piece_class = pieces.get(new_piece.lower())  
+        if new_piece_class:
+            self.__board__.set_piece(row, col, new_piece_class(pawn.get_color(), self.__board__))
         else:
             raise InvalidPawnChange()

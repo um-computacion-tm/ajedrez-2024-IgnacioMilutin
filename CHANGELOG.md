@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - rooks and bishops valid_postions updated due to the change in 'Added' 
+- simplified all moves method
 
 ## [0.2.2] - 2024-10-17
 

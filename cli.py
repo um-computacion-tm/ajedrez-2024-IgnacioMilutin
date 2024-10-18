@@ -22,9 +22,5 @@ def play(chess):
     except Exception as e:
         print(e)
 
-#def ask_for_piece_to_change_pawn_to(self):
-#    return input('Type the piece you would like to replace the pawn(Queen, Rook, Bishop or Knight): ')
- 
-
 if __name__=='__main__':
     main()
