@@ -12,45 +12,36 @@ def all_moves(board,color):
             else: all_moves+=piece.valid_positions(row,col)
     return all_moves
 
-# POISBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
-def get_start_end_step(direction, row, col):
-    directions = {
-        'va': (row-1, -1, -1), 
-        'hl': (col-1, -1, -1),  
-        'vd': (row+1, 8, 1),   
-        'hr': (col+1, 8, 1) 
-    }
+def start_and_step_vertical_and_horizontal(direction, row, col):
+    directions = {'va': (row-1, -1, -1),'hl': (col-1, -1, -1),'vd': (row+1, 8, 1),'hr': (col+1, 8, 1)}
     return directions[direction]
 
 def get_new_position(direction, piece, position, next_row_or_col):
     row, col = position
-    if direction in ['va', 'vd']:
+    if direction in ['va','vd']:
         return (next_row_or_col, col), piece.__board__.get_piece(next_row_or_col, col)
     else:
         return (row, next_row_or_col), piece.__board__.get_piece(row, next_row_or_col)
 
-def process_position(piece, new_position, other_piece, possibles):
-    """Procesa una nueva posición, añadiéndola si es válida."""
+def check_new_position(piece, new_position, other_piece, possibles):
     if other_piece:
         if other_piece.__color__ != piece.__color__:
             possibles.append(new_position)
-        return False  # Detener el bucle si hay una pieza
+        return False
     possibles.append(new_position)
-    return True  # Continuar el bucle si no hay pieza
+    return True
+
+# POSIBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
 def possible_positions_vertical_and_horizontal(piece, row, col, direction):
-    possibles = []
-    start, end, step = get_start_end_step(direction, row, col)
-    position = (row, col)
-    
+    possibles=[]
+    start,end,step = start_and_step_vertical_and_horizontal(direction, row, col)
+    position=(row, col)
     for next_row_or_col in range(start, end, step):
-        new_position, other_piece = get_new_position(direction, piece, position, next_row_or_col)
-        
-        # Si `process_position` devuelve False, detiene el bucle
-        if not process_position(piece, new_position, other_piece, possibles):
+        new_position,other_piece = get_new_position(direction, piece, position, next_row_or_col)
+        if not check_new_position(piece, new_position, other_piece, possibles):
             break
-
     return possibles
 
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
@@ -75,20 +66,29 @@ def possible_positions_hl(piece,row,col):
 
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
 
-def possible_positions_diagonal(piece,row,col,direction):
+def start_end_step_diagonal(direction, row, col):
+    directions = {'dar': (row-1, -1, -1, 1),'ddr': (row+1, 8, 1, 1),'dal': (row-1, -1, -1, -1),'ddl': (row+1, 8, 1, -1)}
+    return directions[direction]
+
+def check_new_position_diagonal(piece, new_position, other_piece, possibles):
+    if other_piece:
+        if other_piece.__color__ != piece.__color__:
+            possibles.append(new_position)
+        return False
+    possibles.append(new_position)
+    return True
+
+def possible_positions_diagonal(piece, row, col, direction):
     possibles=[]
-    directions={'dar':(row-1,-1,-1,1),'ddr':(row+1,8,1,1),'dal':(row-1,-1,-1,-1),'ddl':(row+1,8,1,-1)}
-    start,end,step,col_step=directions[direction]
+    start,end,step,col_step=start_end_step_diagonal(direction,row,col)
     next_col=col+col_step
     for next_row in range(start,end,step):
-        if next_col>7 or next_col<0:
+        if next_col > 7 or next_col < 0: 
             break
-        other_piece = piece.__board__.get_piece(next_row,next_col)
-        if other_piece is not None:
-            if other_piece.__color__ != piece.__color__:
-                possibles.append((next_row,next_col))  
+        new_position=(next_row,next_col)
+        other_piece=piece.__board__.get_piece(next_row,next_col)
+        if not check_new_position_diagonal(piece,new_position,other_piece,possibles):
             break
-        else:possibles.append((next_row,next_col))
         next_col+=col_step
     return possibles
 
