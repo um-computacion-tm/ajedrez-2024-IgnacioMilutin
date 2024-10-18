@@ -12,6 +12,17 @@ def all_moves(board,color):
             else: all_moves+=piece.valid_positions(row,col)
     return all_moves
 
+# CHECKS THE SITUATION OF THE NEW POSITION
+
+def check_new_position(piece, new_position, other_piece, possibles):
+    if other_piece:
+        if other_piece.__color__ != piece.__color__:
+            possibles.append(new_position)
+        return False
+    possibles.append(new_position)
+    return True
+
+# GET TO START AND STEP FOR RANGE OF EACH VERTICAL AND HORIZONTAL MOVEMENT
 
 def start_and_step_vertical_and_horizontal(direction, row, col):
     directions = {'va': (row-1, -1, -1),'hl': (col-1, -1, -1),'vd': (row+1, 8, 1),'hr': (col+1, 8, 1)}
@@ -23,14 +34,6 @@ def get_new_position(direction, piece, position, next_row_or_col):
         return (next_row_or_col, col), piece.__board__.get_piece(next_row_or_col, col)
     else:
         return (row, next_row_or_col), piece.__board__.get_piece(row, next_row_or_col)
-
-def check_new_position(piece, new_position, other_piece, possibles):
-    if other_piece:
-        if other_piece.__color__ != piece.__color__:
-            possibles.append(new_position)
-        return False
-    possibles.append(new_position)
-    return True
 
 # POSIBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
@@ -64,19 +67,13 @@ def possible_positions_hr(piece,row,col):
 def possible_positions_hl(piece,row,col):
     return possible_positions_vertical_and_horizontal(piece,row,col,'hl')
 
-# POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
+# GET TO START, END AND STEP FOR RANGE OF EACH DIAGONAL MOVEMENT
 
 def start_end_step_diagonal(direction, row, col):
     directions = {'dar': (row-1, -1, -1, 1),'ddr': (row+1, 8, 1, 1),'dal': (row-1, -1, -1, -1),'ddl': (row+1, 8, 1, -1)}
     return directions[direction]
 
-def check_new_position_diagonal(piece, new_position, other_piece, possibles):
-    if other_piece:
-        if other_piece.__color__ != piece.__color__:
-            possibles.append(new_position)
-        return False
-    possibles.append(new_position)
-    return True
+# POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
 
 def possible_positions_diagonal(piece, row, col, direction):
     possibles=[]
@@ -87,7 +84,7 @@ def possible_positions_diagonal(piece, row, col, direction):
             break
         new_position=(next_row,next_col)
         other_piece=piece.__board__.get_piece(next_row,next_col)
-        if not check_new_position_diagonal(piece,new_position,other_piece,possibles):
+        if not check_new_position(piece,new_position,other_piece,possibles):
             break
         next_col+=col_step
     return possibles
