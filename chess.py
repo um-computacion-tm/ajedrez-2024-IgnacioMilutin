@@ -48,15 +48,18 @@ class Chess:
             self.__turn__='BLACK'
         else: self.__turn__='WHITE'
 
-    def rules(self,to_row,to_col):
-        if self.pawn_change_verification(to_row,to_col)==True:
+    # EXECUTION  OF CHESS RULES AFTER EVERY MOVE IN CLI: PAWN_CHANGE
+
+    def rules(self, to_row, to_col):
+        if self.pawn_change_verification(to_row, to_col):
             while True:
+                new_piece = input('Type the piece you would like to replace the pawn (Queen, Rook, Bishop or Knight): ')
                 try:
-                    new_piece=input('Type the piece you would like to replace the pawn(Queen, Rook, Bishop or Knight): ')
-                    self.pawn_change_action(new_piece,to_row,to_col)
+                    self.pawn_change_action(new_piece, to_row, to_col)
                     break
-                except Exception as pawn_change_exception: 
+                except Exception as pawn_change_exception:
                     print(pawn_change_exception)
+                    continue
 
     # VERIFIES IF THE PIECE THAT HITTED THE END IS A PAWN
 
@@ -68,12 +71,9 @@ class Chess:
 
     def pawn_change_action(self,new_piece,row,col):
         pawn=self.__board__.get_piece(row,col)
-        if new_piece.lower()=='queen':
-            self.__board__.set_piece(row,col,Queen(pawn.get_color(),self.__board__))
-        elif new_piece.lower()=='bishop':
-            self.__board__.set_piece(row,col,Bishop(pawn.get_color(),self.__board__))
-        elif new_piece.lower()=='rook':
-            self.__board__.set_piece(row,col,Rook(pawn.get_color(),self.__board__))
-        elif new_piece.lower()=='knight':
-            self.__board__.set_piece(row,col,Knight(pawn.get_color(),self.__board__))
-        else: raise InvalidPawnChange()
+        pieces={'queen':Queen,'rook':Rook,'bishop':Bishop,'knight':Knight}
+        new_piece=pieces.get(new_piece.lower())
+        if new_piece:
+            self.__board__.set_piece(row,col,new_piece(pawn.get_color(),self.__board__))
+        else:
+            raise InvalidPawnChange()
