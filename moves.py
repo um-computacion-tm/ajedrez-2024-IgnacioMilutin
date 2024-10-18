@@ -23,8 +23,8 @@ def get_start_end_step(direction, row, col):
     }
     return directions[direction]
 
-def get_new_position(direction, piece, row, col, next_row_or_col):
-    
+def get_new_position(direction, piece, position, next_row_or_col):
+    row, col = position
     if direction in ['va', 'vd']:
         return (next_row_or_col, col), piece.__board__.get_piece(next_row_or_col, col)
     else:
@@ -33,17 +33,19 @@ def get_new_position(direction, piece, row, col, next_row_or_col):
 def possible_positions_vertical_and_horizontal(piece, row, col, direction):
     possibles = []
     start, end, step = get_start_end_step(direction, row, col)
+    position = (row, col)
     
     for next_row_or_col in range(start, end, step):
-        new_position, other_piece = get_new_position(direction, piece, row, col, next_row_or_col)
+        new_position, other_piece = get_new_position(direction, piece, position, next_row_or_col)
 
-        if other_piece is not None:
+        if other_piece:
             if other_piece.__color__ != piece.__color__:
                 possibles.append(new_position)
-            break
+            break  
         possibles.append(new_position)
 
     return possibles
+
 
 
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
