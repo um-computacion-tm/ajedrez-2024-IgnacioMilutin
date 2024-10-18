@@ -1,16 +1,21 @@
 # LIST OF ALL POSSIBLE MOVES FOR ALL PIECES OF A COLOR
 
 def all_moves(board,color):
-    all_moves=[]
+    full_moves=[]
+    valid_positions_methods = {
+        'King': lambda piece, row, col: piece.valid_positions(row, col, for_all_moves=True),
+        'Queen': lambda piece, row, col: piece.valid_positions(row, col),
+        'Rook': lambda piece, row, col: piece.valid_positions(row, col),
+        'Pawn': lambda piece, row, col: piece.valid_positions(row, col),
+        'Knight': lambda piece, row, col: piece.valid_positions(row, col),
+        'Bishop': lambda piece, row, col: piece.valid_positions(row, col)}
     for row in range(8):
         for col in range(8):
-            piece=board.get_piece(row,col)
-            if piece is None or piece.get_color() != color:
-                continue
-            if type(piece).__name__=='King':
-                all_moves+=piece.valid_positions(row,col,for_all_moves=type(piece).__name__=='King')
-            else: all_moves+=piece.valid_positions(row,col)
-    return all_moves
+            piece = board.get_piece(row, col)
+            if piece is not None and piece.get_color() == color:
+                piece_type = type(piece).__name__
+                full_moves.extend(valid_positions_methods[piece_type](piece, row, col))
+    return full_moves
 
 # POISBLE POSITIONS VERTICAL ASCENDANT, HORIZONTAL LEFT, VERTICAL DESCENDANT AND HORIZONTAL RIGHT POSTIONS TO MOVE A PIECE TO
 
