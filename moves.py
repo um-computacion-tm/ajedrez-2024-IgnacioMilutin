@@ -30,6 +30,15 @@ def get_new_position(direction, piece, position, next_row_or_col):
     else:
         return (row, next_row_or_col), piece.__board__.get_piece(row, next_row_or_col)
 
+def process_position(piece, new_position, other_piece, possibles):
+    """Procesa una nueva posición, añadiéndola si es válida."""
+    if other_piece:
+        if other_piece.__color__ != piece.__color__:
+            possibles.append(new_position)
+        return False  # Detener el bucle si hay una pieza
+    possibles.append(new_position)
+    return True  # Continuar el bucle si no hay pieza
+
 def possible_positions_vertical_and_horizontal(piece, row, col, direction):
     possibles = []
     start, end, step = get_start_end_step(direction, row, col)
@@ -37,16 +46,12 @@ def possible_positions_vertical_and_horizontal(piece, row, col, direction):
     
     for next_row_or_col in range(start, end, step):
         new_position, other_piece = get_new_position(direction, piece, position, next_row_or_col)
-
-        if other_piece:
-            if other_piece.__color__ != piece.__color__:
-                possibles.append(new_position)
-            break  
-        possibles.append(new_position)
+        
+        # Si `process_position` devuelve False, detiene el bucle
+        if not process_position(piece, new_position, other_piece, possibles):
+            break
 
     return possibles
-
-
 
 # POSSIBLE VERTICAL DESCENDANT POSITIONS TO MOVE A PIECE TO:
 
