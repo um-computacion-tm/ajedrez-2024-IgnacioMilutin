@@ -17,14 +17,8 @@ def play(chess):
         to_row=int(input('To row: '))
         to_col=int(input('To col: '))
         chess.move(from_row,from_col,to_row,to_col)
-        if chess.pawn_change_verification(to_row,to_col)==True:
-            while True:
-                try:
-                    new_piece=input('Type the piece you would like to replace the pawn(Queen, Rook, Bishop or Knight): ')
-                    chess.pawn_change_action(new_piece,to_row,to_col)
-                    break
-                except Exception as pawn_change_exception: 
-                    print(pawn_change_exception)
+        chess.rules(to_row,to_col)
+        
     except Exception as e:
         print(e)
 
