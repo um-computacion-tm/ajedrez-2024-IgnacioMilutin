@@ -71,7 +71,16 @@ def possible_positions_diagonal(piece,row,col,direction):
         next_col+=col_step
     return possibles
 
+# VALID POSITIONS FOR ROOK AND BISHOP
 
+def valid_positions_rook_and_bishop(piece,from_row,from_col):
+    possible_positions=[]
+    piece_moves={'Rook':[possible_positions_vd,possible_positions_va,possible_positions_hr,possible_positions_hl],
+                 'Bishop':[possible_positions_dar,possible_positions_dal,possible_positions_ddr,possible_positions_ddl]}
+    moves=piece_moves.get(type(piece).__name__)
+    for move in moves:
+        possible_positions+=move(piece,from_row,from_col)
+    return possible_positions
 
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT POSITIONS TO A PIECE TO:
 

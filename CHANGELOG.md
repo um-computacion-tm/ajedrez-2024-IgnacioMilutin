@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2024-10-18
+
+### Added
+
+- valid_positions_rook_and_bishop unites the 2 valid positions in one method
+
+### Changed
+
+- rooks and bishops valid_postions updated due to the change in 'Added' 
+
 ## [0.2.2] - 2024-10-17
 
 ### Changed
