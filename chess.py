@@ -117,8 +117,12 @@ class Chess:
     def end_due_to_no_piece_verification(self):
         for row in range(8):
             for col in range(8):
-                cell = self.__board__.get_piece(row, col)
-                if cell is not None and cell.get_color() == self.__turn__:
+                if self.cell_evaluation(row, col):
                     return False
-        return True 
+        return True
                 
+    # CHECKS THE STATE OF THE CELL TO SEE IF ITS NONE OR A PIECVE FROM THE OTHER COLOR
+
+    def cell_evaluation(self,row, col):
+        cell = self.__board__.get_piece(row, col)
+        return cell is not None and cell.get_color() == self.__turn__
