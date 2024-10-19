@@ -84,20 +84,26 @@ def start_end_step_diagonal(direction, row, col):
     directions = {'dar': (row-1, -1, -1, 1),'ddr': (row+1, 8, 1, 1),'dal': (row-1, -1, -1, -1),'ddl': (row+1, 8, 1, -1)}
     return directions[direction]
 
+# CHECKS STATE OF THE NEW POSITIONS
+
+def process_position(piece, next_row, next_col, possibles):
+    if next_col < 0 or next_col > 7:
+        return False
+    new_position = (next_row, next_col)
+    other_piece = piece.__board__.get_piece(next_row, next_col)
+    
+    return check_new_position(piece, new_position, other_piece, possibles)
+
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
 
 def possible_positions_diagonal(piece, row, col, direction):
-    possibles=[]
-    start,end,step,col_step=start_end_step_diagonal(direction,row,col)
-    next_col=col+col_step
-    for next_row in range(start,end,step):
-        if next_col > 7 or next_col < 0: 
+    possibles = []
+    start, end, step, col_step = start_end_step_diagonal(direction, row, col)
+    next_col = col + col_step
+    for next_row in range(start, end, step):
+        if not process_position(piece, next_row, next_col, possibles):
             break
-        new_position=(next_row,next_col)
-        other_piece=piece.__board__.get_piece(next_row,next_col)
-        if not check_new_position(piece,new_position,other_piece,possibles):
-            break
-        next_col+=col_step
+        next_col += col_step
     return possibles
 
 # VALID POSITIONS FOR ROOK AND BISHOP
