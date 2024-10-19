@@ -48,7 +48,7 @@ class Chess:
             self.__turn__='BLACK'
         else: self.__turn__='WHITE'
 
-    # EXECUTION  OF CHESS RULES AFTER EVERY MOVE IN CLI: PAWN_CHANGE
+    # EXECUTION OF CHESS RULES AFTER EVERY MOVE IN CLI: PAWN_CHANGE
 
     def rules(self, to_row, to_col):
         if self.pawn_change_verification(to_row, to_col):
@@ -60,6 +60,19 @@ class Chess:
                 except InvalidPawnChange as pawn_change_exception:
                     print(pawn_change_exception) 
                     continue  
+
+    # PAWN CHANGE INTO OTHER PIECE RULE
+
+    def pawn_change_rule(self, to_row, to_col):
+        while True:  
+            new_piece = self.ask_for_piece() 
+            try:
+                self.pawn_change_action(new_piece, to_row, to_col)  
+                break 
+            except InvalidPawnChange as pawn_change_exception:
+                print(pawn_change_exception) 
+                continue  
+
 
     def ask_for_piece(self):
         return input('Type the piece you would like to replace the pawn (Queen, Rook, Bishop or Knight): ')
