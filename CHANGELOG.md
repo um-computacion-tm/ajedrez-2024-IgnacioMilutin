@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2024-10-19
+
+### Added 
+
+- Rule to end the game when a piece runs out of pieces and its tests
+
 ## [0.2.3] - 2024-10-18
 
 ### Added
@@ -22,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - updated knight moves
 - updated board str
 - updated pawn change to other piece method
-- changed structur for valid-postions in king,knight,pawn now uses get_possible_postiosn function
+- changed structure for valid-postions in king,knight,pawn now uses get_possible_postiosn function
 
 ## [0.2.2] - 2024-10-17
 

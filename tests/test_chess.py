@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from chess import Chess
 from pawn import Pawn
 from board import Board
@@ -16,6 +17,12 @@ class TestChess(unittest.TestCase):
     def test_is_playing(self):
         chess=Chess()
         self.assertTrue(chess.is_playing())
+
+    # END_AGME
+
+    def test_end_game(self):
+        chess=Chess()
+        self.assertFalse(chess.end_game())
     
     # MOVE
 
@@ -73,7 +80,18 @@ class TestChess(unittest.TestCase):
         chess.__turn__='BLACK'
         chess.change_turn()
         self.assertEqual(chess.turn(),'WHITE')
-    
+
+    # GET NEXT TURN
+
+    def test_get_next_turn_actual_turn_white(self):
+        chess=Chess()
+        self.assertEqual(chess.get_next_turn(),'BLACK')
+
+    def test_get_next_turn_actual_turn_black(self):
+        chess=Chess()
+        chess.__turn__='BLACK'
+        self.assertEqual(chess.get_next_turn(),'WHITE')
+
     # SHOW BOARD
 
     def test_show_board(self):
@@ -227,6 +245,53 @@ class TestChess(unittest.TestCase):
         with self.assertRaises(InvalidPawnChange) as exc:
             chess.pawn_change_action('hola',0,4)
         self.assertEqual(exc.exception.message,"Cant change pawn for the given input, please select one of the granted options(Queen, Bishop, Rook or Knight): ")
+
+    # END_GAME 
+
+    @patch('builtins.print')
+    def test_end_game_due_to_no_piece_rule_white_wins(self,mock_print):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        chess.move(5,4,4,4)
+        execution=chess.end_due_to_no_piece_rule()
+        self.assertFalse(execution)
+        mock_print.assert_called_with('BLACK ran out of pieces. ¡WHITE WINS THE GAME!')
+
+    @patch('builtins.print')
+    def test_end_game_due_to_no_piece_rule_black_wins(self,mock_print):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        chess.__turn__='BLACK'
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.move(3,4,4,4)
+        execution=chess.end_due_to_no_piece_rule()
+        self.assertFalse(execution)
+        mock_print.assert_called_with('WHITE ran out of pieces. ¡BLACK WINS THE GAME!')
+
+    def test_end_game_due_to_no_piece_rule_white_dont_win(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.move(5,4,4,4)
+        execution=chess.end_due_to_no_piece_rule()
+        self.assertTrue(execution)
+
+    def test_end_game_due_to_no_piece_rule_black_dont_win(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        chess.__turn__='BLACK'
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.move(3,4,4,4)
+        execution=chess.end_due_to_no_piece_rule()
+        self.assertTrue(execution)
+        
 
 if __name__=='__main__':
     unittest.main()
