@@ -1,5 +1,5 @@
 from pieces import Piece
-from moves import all_moves
+from moves import all_moves,get_possible_positions
 
 class King(Piece):
     white_str='♚'
@@ -16,12 +16,22 @@ class King(Piece):
     
     # ALL VALID POSITIONS ('for_all_moves' parameter is to avoid recursion when using 'all_moves()' function)
 
-    def valid_positions(self,from_row,from_col,for_all_moves=False):
-        possible_positions=self.possible_positions_va(from_row,from_col)+self.possible_positions_vd(from_row,from_col)+self.possible_positions_hr(from_row,from_col)+self.possible_positions_hl(from_row,from_col)+self.possible_positions_dar(from_row,from_col)+self.possible_positions_dal(from_row,from_col)+self.possible_positions_ddr(from_row,from_col)+self.possible_positions_ddl(from_row,from_col)
-        if for_all_moves==False:
-            full_moves=all_moves(self.__board__,self.get_opposite_color())
-            return self.filter_move(possible_positions,full_moves)
+    def valid_positions(self, from_row, from_col, for_all_moves=False):
+        movement_functions = [
+            self.possible_positions_va, 
+            self.possible_positions_vd, 
+            self.possible_positions_hr, 
+            self.possible_positions_hl, 
+            self.possible_positions_dar, 
+            self.possible_positions_dal, 
+            self.possible_positions_ddr, 
+            self.possible_positions_ddl]
+        possible_positions = get_possible_positions(from_row, from_col, movement_functions)
+        if not for_all_moves:
+            full_moves = all_moves(self.__board__, self.get_opposite_color())
+            return self.filter_move(possible_positions, full_moves)
         return possible_positions
+
 
     # VERTICAL ASCENDANT MOVE
 

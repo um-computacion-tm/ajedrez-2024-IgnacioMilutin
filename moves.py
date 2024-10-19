@@ -1,3 +1,10 @@
+# GIVES ALL POSSIBLE POSTIONS TO CREATE VALID_POSITIONS
+
+def get_possible_positions(from_row, from_col, movement_functions):
+    possible_positions = []
+    for move_func in movement_functions:
+        possible_positions += move_func(from_row, from_col)
+    return possible_positions
 
 # GETS THE VALID POSTIONS OF THE GIVEN PIECE TO USE IN ALL MOVES
 

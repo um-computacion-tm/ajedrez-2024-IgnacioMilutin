@@ -1,12 +1,17 @@
 from pieces import Piece
+from moves import get_possible_positions
 
 class Knight(Piece):
     white_str='♞'
     black_str='♘'
 
-    def valid_positions(self,from_row,from_col):
-        possible_positions=self.possible_positions_var_and_hra(from_row, from_col)+self.possible_positions_val_and_hla(from_row, from_col)+self.possible_positions_vdr_and_hrd(from_row, from_col)+self.possible_positions_vdl_and_hld(from_row, from_col)
-        return possible_positions
+    def valid_positions(self, from_row, from_col):
+        movement_functions = [
+            self.possible_positions_var_and_hra, 
+            self.possible_positions_val_and_hla, 
+            self.possible_positions_vdr_and_hrd, 
+            self.possible_positions_vdl_and_hld]
+        return get_possible_positions(from_row, from_col, movement_functions)
     
     # CHECKS AND UPDATES STATE OF THE NEXT MOVE FOR VERTICAL DESCENDANT TO THE RIGHT AND HORIZONTAL RIGHT AND DESCENDANT
     
