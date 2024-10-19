@@ -52,14 +52,8 @@ class Chess:
 
     def rules(self, to_row, to_col):
         if self.pawn_change_verification(to_row, to_col):
-            while True:  
-                new_piece = self.ask_for_piece() 
-                try:
-                    self.pawn_change_action(new_piece, to_row, to_col)  
-                    break 
-                except InvalidPawnChange as pawn_change_exception:
-                    print(pawn_change_exception) 
-                    continue  
+            self.pawn_change_rule(to_row, to_col)
+
 
     # PAWN CHANGE INTO OTHER PIECE RULE
 
@@ -73,6 +67,7 @@ class Chess:
                 print(pawn_change_exception) 
                 continue  
 
+    # ASKS THE USER WHICH PIECE TO CHANGE THE PAWN TO
 
     def ask_for_piece(self):
         return input('Type the piece you would like to replace the pawn (Queen, Rook, Bishop or Knight): ')
