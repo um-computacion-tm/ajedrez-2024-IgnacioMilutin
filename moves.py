@@ -1,7 +1,10 @@
 
 # GETS THE VALID POSTIONS OF THE GIVEN PIECE TO USE IN ALL MOVES
 
-def get_piece_valid_positions(piece, row, col):
+def get_piece_valid_positions(board, row, col, color):
+    piece = board.get_piece(row, col)
+    if not is_valid_piece(piece, color):
+        return [] 
     if type(piece).__name__ == 'King':
         return piece.valid_positions(row, col, for_all_moves=True)
     return piece.valid_positions(row, col)
@@ -17,10 +20,7 @@ def all_moves(board, color):
     all_moves = []
     for row in range(8):
         for col in range(8):
-            piece = board.get_piece(row, col)
-            if not is_valid_piece(piece, color):
-                continue
-            all_moves+=get_piece_valid_positions(piece, row, col)
+            all_moves += get_piece_valid_positions(board, row, col, color)
     return all_moves
 
 # CHECKS THE SITUATION OF THE NEW POSITION
