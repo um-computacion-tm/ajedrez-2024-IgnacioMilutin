@@ -91,7 +91,6 @@ def process_position(piece, next_row, next_col, possibles):
         return False
     new_position = (next_row, next_col)
     other_piece = piece.__board__.get_piece(next_row, next_col)
-    
     return check_new_position(piece, new_position, other_piece, possibles)
 
 # POSSIBLE DIAGONAL ASCENDANT TO THE RIGHT, DIAGONAL DESCENDANT TO THE RIGHT,DIAGONAL ASCENDANT TO THE LEFT AND DIAGONAL DESCENDANT TO THE LEFT TO A PIECE TO
