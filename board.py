@@ -23,6 +23,8 @@ class Board:
             self.bishop_board_definition()
             self.knight_board_definition()
     
+    # ADDS AND CONTROLS THE PRINT OF EVERY ROW TO SEE IF THERES A PIECE OR NOT
+
     def row__str(self, row):
         formatted_row = ""
         for cell in row:

@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - divided all_moves in more methods to pass codeclimate
 - updated knight moves
 - updated board str
+- updated pawn change to other piece method
 
 ## [0.2.2] - 2024-10-17
 
