@@ -23,6 +23,15 @@ class Board:
             self.bishop_board_definition()
             self.knight_board_definition()
     
+    def row__str(self, row):
+        formatted_row = ""
+        for cell in row:
+            if cell is not None:
+                formatted_row += str(cell) + " | "
+            else:
+                formatted_row += "  | "
+        return formatted_row
+
     # CREATE THE PRINT OF THE BOARD
     
     def __str__(self):
@@ -30,11 +39,7 @@ class Board:
         board_str += "  " + "-" * 33 + "\n"
         for i, row in enumerate(self.__positions__):
             board_str += str(i) + " | "
-            for cell in row:
-                if cell is not None:
-                    board_str += str(cell) + " | "
-                else:
-                    board_str += "  | "
+            board_str += self.row__str(row)
             board_str += "\n"
             board_str += "  " + "-" * 33 + "\n"
         return board_str
