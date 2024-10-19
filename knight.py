@@ -10,8 +10,8 @@ class Knight(Piece):
     
     # CHECKS AND UPDATES STATE OF THE NEXT MOVE FOR VERTICAL DESCENDANT TO THE RIGHT AND HORIZONTAL RIGHT AND DESCENDANT
     
-    def process_move_vdr_and_hrd(self, row, col, row_to_add, col_to_add, possibles):
-        new_row, new_col = row + row_to_add, col + col_to_add
+    def process_move_vdr_and_hrd(self, position, move_info, possibles):
+        new_row, new_col = position[0] + move_info[0], position[1] + move_info[1]
         if not (0 <= new_row <= 7 and 0 <= new_col <= 7): 
             return
         other_piece = self.__board__.get_piece(new_row, new_col)
@@ -23,8 +23,9 @@ class Knight(Piece):
     def possible_positions_vdr_and_hrd(self, row, col):
         possibles = []
         rows_and_cols_to_add = [(2, 1), (1, 2)]
-        for row_to_add, col_to_add in rows_and_cols_to_add:
-            self.process_move_vdr_and_hrd(row, col, row_to_add, col_to_add, possibles)
+        position = (row, col)
+        for move_info in rows_and_cols_to_add:
+            self.process_move_vdr_and_hrd(position, move_info, possibles)
         return possibles
     
     # CALCULATES VERTICAL DESCENDANT TO THE LEFT AND HORIZONTAL LEFT AND DESCENDANT MOVES
