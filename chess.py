@@ -4,6 +4,7 @@ from queen import Queen
 from bishop import Bishop
 from knight import Knight
 from rook import Rook
+from king import King
 from exceptions import InvalidMove,EmptyPosition,InvalidTurn,InvalidPawnChange
 
 class Chess:
@@ -15,6 +16,11 @@ class Chess:
 
     def is_playing(self):
         return True
+    
+    # METHOD TO END THE GAME}
+
+    def end_game(self):
+        return False
 
     # USES RULES FROM EVERY PIECE AND BOARD TO MOVE AND CHANGE TURNS
 
@@ -48,11 +54,19 @@ class Chess:
             self.__turn__='BLACK'
         else: self.__turn__='WHITE'
 
-    # EXECUTION OF CHESS RULES AFTER EVERY MOVE IN CLI: PAWN_CHANGE
+    # GIVES THE COLOR OF THE NEXT TURN
+
+    def get_next_turn(self):
+        if self.__turn__=='WHITE':
+           return 'BLACK'
+        else: return 'WHITE'
+
+    # EXECUTION OF CHESS RULES AFTER EVERY MOVE IN CLI: PAWN_CHANGE, END GAME WHEN THERES NO PIECES FOR ONE COLOR, 
 
     def rules(self, to_row, to_col):
         if self.pawn_change_verification(to_row, to_col):
             self.pawn_change_rule(to_row, to_col)
+        self.end_due_to_no_piece_rule()
 
 
     # PAWN CHANGE INTO OTHER PIECE RULE
@@ -89,3 +103,22 @@ class Chess:
             self.__board__.set_piece(row, col, new_piece_class(pawn.get_color(), self.__board__))
         else:
             raise InvalidPawnChange()
+        
+    # RULE FOR ENDING THE GAME GAME WHEN A COLOR RUNS OUT OF PIECES
+        
+    def end_due_to_no_piece_rule(self):
+        if self.end_due_to_no_piece_verification():
+            print(f"{self.__turn__} ran out of pieces. ¡{self.get_next_turn()} WINS THE GAME!")
+            self.end_game()
+        else: return True
+        
+    # VERIFIES THE STATE OF DE CELL TO CHECK IF THE COLOR HAS NO PIECE
+
+    def end_due_to_no_piece_verification(self):
+        for row in range(8):
+            for col in range(8):
+                cell = self.__board__.get_piece(row, col)
+                if cell is not None and cell.get_color() == self.__turn__:
+                    return False
+        return True 
+                
