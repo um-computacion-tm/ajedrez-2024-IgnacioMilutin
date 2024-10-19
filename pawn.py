@@ -1,4 +1,5 @@
 from pieces import Piece
+from moves import get_possible_positions
 
 class Pawn(Piece):
     white_str='♟'
@@ -7,8 +8,10 @@ class Pawn(Piece):
     # POSSIBLE POSITIONS TO MOVE PAWN INCLUDIONG MOVE AND EAT
     
     def valid_positions(self,from_row,from_col):
-        possible_positions=self.possible_positions_move(from_row, from_col)+self.possible_positions_eat(from_row, from_col)
-        return possible_positions
+        movement_functions = [
+            self.possible_positions_move, 
+            self.possible_positions_eat]
+        return get_possible_positions(from_row, from_col, movement_functions)
    
     # PAWN EATING A PIECE
     

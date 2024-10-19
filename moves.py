@@ -1,4 +1,4 @@
-# GIVES ALL POSSIBLE POSTIONS TO CREATE VALID_POSITIONS
+# GIVES ALL POSSIBLE POSTIONS TO CREATE VALID_POSITIONS FOR PIECES WHICH HAS INDIVIDUALS MOVES
 
 def get_possible_positions(from_row, from_col, movement_functions):
     possible_positions = []

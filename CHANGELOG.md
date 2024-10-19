@@ -22,7 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - updated knight moves
 - updated board str
 - updated pawn change to other piece method
-- changed structur for valid-postions in king an knight, now uses get_possible_postiosn function
+- changed structur for valid-postions in king,knight,pawn now uses get_possible_postiosn function
 
 ## [0.2.2] - 2024-10-17
 
