@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Rule to stop the game when somebody types draw
+- Readme now includes the rules
 
 ## [0.2.4] - 2024-10-19
 
