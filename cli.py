@@ -16,6 +16,7 @@ def play(chess):
         from_col=int(input('From col: '))
         to_row=int(input('To row: '))
         to_col=int(input('To col: '))
+        chess.draw(from_row,from_col,to_row,to_col)
         chess.move(from_row,from_col,to_row,to_col)
         chess.rules(to_row,to_col)
         
