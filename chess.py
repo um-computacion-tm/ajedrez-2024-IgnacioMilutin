@@ -110,23 +110,35 @@ class Chess:
     def end_due_to_no_piece_rule(self):
         if self.end_due_to_no_piece_verification():
             print(f"{self.__turn__} ran out of pieces. ¡{self.get_next_turn()} WINS THE GAME!")
-            self.end_game()
+            return self.end_game()
         else: return True
         
     # VERIFIES THE STATE OF DE CELL TO CHECK IF THE COLOR HAS NO PIECE
 
     def end_due_to_no_piece_verification(self):
+        return self.check_rows_for_end_due_to_no_piece() 
+
+    def check_rows_for_end_due_to_no_piece(self):
         for row in range(8):
-            for col in range(8):
-                if self.cell_evaluation(row, col):
-                    return False
+            if self.check_cols_for_end_due_to_no_piece(row):
+                continue
+            else: return False
         return True
                 
+    def check_cols_for_end_due_to_no_piece(self,row):
+        for col in range(8):
+            if self.cell_evaluation(row, col):
+                continue
+            else: return False
+        return True
+
     # CHECKS THE STATE OF THE CELL TO SEE IF ITS NONE OR A PIECVE FROM THE OTHER COLOR
 
     def cell_evaluation(self,row, col):
         cell = self.__board__.get_piece(row, col)
-        return cell is not None and cell.get_color() == self.__turn__
+        if cell is None or cell.get_color() != self.__turn__:
+            return True
+        return False
 
     # CHECKS IF A PLAYERES WANT TO END THE GAME WITH A DRAW
 

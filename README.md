@@ -53,7 +53,8 @@ Chess have several special moves. this are the following
 - Pawn Promotion: When a pawn reaches the end of the board (if its a white pawn the row 0 (cero) and if its a black pawn the row 7 (seven)), it can be promoted an transformed to one of the following pieces: Queen, Bishop, knight or Rook.
 
 
-### Thanks for reading the rules. ENJOY THE GAME
+### Thanks for reading the rules.
+### TO START THE GAME GO TO THE CLI FILE AND RUN THE FILE. THANKS AND ENJOY THE GAME
 
 
 
