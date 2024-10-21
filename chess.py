@@ -20,6 +20,7 @@ class Chess:
     # METHOD TO END THE GAME}
 
     def end_game(self):
+        print('THANKS FOR PLAYING!')
         return False
 
     # USES RULES FROM EVERY PIECE AND BOARD TO MOVE AND CHANGE TURNS
@@ -126,3 +127,24 @@ class Chess:
     def cell_evaluation(self,row, col):
         cell = self.__board__.get_piece(row, col)
         return cell is not None and cell.get_color() == self.__turn__
+
+    # CHECKS IF A PLAYERES WANT TO END THE GAME WITH A DRAW
+
+    def draw(self,from_row,from_col,to_row,to_col):
+        inputs=[from_row,from_col,to_row,to_col]
+        inputs_lower=[]
+        for input in inputs:
+            inputs_lower.append(str(input).lower())
+        if 'draw' in inputs_lower:
+            answer=self.ask_other_player_for_draw()
+            if answer=='yes':
+                print('Both players agreed a draw')
+                self.end_game()
+            else: print('The other player denied the draw. Please continue playing')
+
+    # ASK THE OTHER PLAYER IF ITS OK TO FINISH WITH A DRAW
+
+    def ask_other_player_for_draw(self):
+        answer=input(f'{self.__turn__} asked for a draw. Do yo want to end the game with a draw? (Yes/No): ')
+        answer=answer.lower()
+        return answer

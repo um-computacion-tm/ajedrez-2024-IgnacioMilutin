@@ -20,9 +20,11 @@ class TestChess(unittest.TestCase):
 
     # END_AGME
 
-    def test_end_game(self):
+    @patch('builtins.print')
+    def test_end_game(self,mock_print):
         chess=Chess()
         self.assertFalse(chess.end_game())
+        mock_print.assert_called_with('THANKS FOR PLAYING!')
     
     # MOVE
 
@@ -246,7 +248,7 @@ class TestChess(unittest.TestCase):
             chess.pawn_change_action('hola',0,4)
         self.assertEqual(exc.exception.message,"Cant change pawn for the given input, please select one of the granted options(Queen, Bishop, Rook or Knight): ")
 
-    # END_GAME 
+    # END_GAME BECAUSE A COLOR RAN OUT OF PIECES
 
     @patch('builtins.print')
     def test_end_game_due_to_no_piece_rule_white_wins(self,mock_print):
@@ -257,7 +259,8 @@ class TestChess(unittest.TestCase):
         chess.move(5,4,4,4)
         execution=chess.end_due_to_no_piece_rule()
         self.assertFalse(execution)
-        mock_print.assert_called_with('BLACK ran out of pieces. ¡WHITE WINS THE GAME!')
+        mock_print.assert_any_call('BLACK ran out of pieces. ¡WHITE WINS THE GAME!')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')
 
     @patch('builtins.print')
     def test_end_game_due_to_no_piece_rule_black_wins(self,mock_print):
@@ -269,7 +272,8 @@ class TestChess(unittest.TestCase):
         chess.move(3,4,4,4)
         execution=chess.end_due_to_no_piece_rule()
         self.assertFalse(execution)
-        mock_print.assert_called_with('WHITE ran out of pieces. ¡BLACK WINS THE GAME!')
+        mock_print.assert_any_call('WHITE ran out of pieces. ¡BLACK WINS THE GAME!')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')
 
     def test_end_game_due_to_no_piece_rule_white_dont_win(self):
         chess=Chess()
@@ -291,7 +295,77 @@ class TestChess(unittest.TestCase):
         chess.move(3,4,4,4)
         execution=chess.end_due_to_no_piece_rule()
         self.assertTrue(execution)
-        
+
+    # END GAME WITH DRAW
+
+    @patch('builtins.input',side_effect=['Yes'])
+    @patch('builtins.print')
+    def test_end_game_with_draw_both_players_agree_said_in_from_row(self,mock_print,mock_input):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.draw('draw',4,4,4)
+        self.assertEqual(mock_input.call_count,1)
+        self.assertEqual(mock_print.call_count,2)
+        mock_print.assert_any_call('Both players agreed a draw')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')
+
+    @patch('builtins.input',side_effect=['Yes'])
+    @patch('builtins.print')
+    def test_end_game_with_draw_both_players_agree_said_in_from_col(self,mock_print,mock_input):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.draw(5,'draw',4,4)
+        self.assertEqual(mock_input.call_count,1)
+        self.assertEqual(mock_print.call_count,2)
+        mock_print.assert_any_call('Both players agreed a draw')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')
+
+    @patch('builtins.input',side_effect=['Yes'])
+    @patch('builtins.print')
+    def test_end_game_with_draw_both_players_agree_said_in_to_row(self,mock_print,mock_input):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.draw(5,4,'draw',4)
+        self.assertEqual(mock_input.call_count,1)
+        self.assertEqual(mock_print.call_count,2)
+        mock_print.assert_any_call('Both players agreed a draw')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')
+
+    @patch('builtins.input',side_effect=['Yes'])
+    @patch('builtins.print')
+    def test_end_game_with_draw_both_players_agree_said_in_to_col(self,mock_print,mock_input):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.draw(5,4,4,'draw')
+        self.assertEqual(mock_input.call_count,1)
+        self.assertEqual(mock_print.call_count,2)
+        mock_print.assert_any_call('Both players agreed a draw')
+        mock_print.assert_any_call('THANKS FOR PLAYING!')    
+
+    @patch('builtins.input',side_effect=['no'])
+    @patch('builtins.print')
+    def test_end_game_with_draw_only_second_player_denied_the_draw(self,mock_print,mock_input):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,Pawn("WHITE", board))
+        board.set_piece(3,4,Pawn("BLACK", board))
+        chess.draw('draw',4,4,4)
+        self.assertEqual(mock_input.call_count,1)
+        self.assertEqual(mock_print.call_count,1)
+        mock_print.assert_any_call('The other player denied the draw. Please continue playing')
 
 if __name__=='__main__':
     unittest.main()
