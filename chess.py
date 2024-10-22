@@ -194,7 +194,6 @@ class Chess:
             col=self.king_position_search_in_col(row,color)
             if col is not False:
                 return (row,col)
-        return None
 
     def king_position_search_in_col(self,row,color):
         for col in range(8):
