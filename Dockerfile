@@ -7,7 +7,7 @@ WORKDIR /ajedrez-2024-IgnacioMilutin
 
 RUN pip install -r requirements.txt
 
-CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python main.py"]
+CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python -m cli"]
 
 #ejecutar desde terminalk de carpeta
 # docker buildx build -t first-circleci-dqmdz-um .

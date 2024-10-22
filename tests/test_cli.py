@@ -10,7 +10,7 @@ class TestCli(unittest.TestCase):
 
     # USER INPUTS FOR MOVING FROM ROW,COL TO ROW,COL
 
-    @patch('builtins.input',side_effect=['1','1','2','2'])
+    @patch('builtins.input',side_effect=['6','0','5','0'])
     @patch('builtins.print')
     @patch.object(Chess,'move')
     def test_happy_path(self,mock_chess_move,mock_print,mock_input):
