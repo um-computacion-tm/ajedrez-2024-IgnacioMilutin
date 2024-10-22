@@ -57,8 +57,7 @@ class TestBoard(unittest.TestCase):
             board.get_piece(10, 10)
         self.assertEqual(
             exc.exception.message,
-            "La posicion indicada se encuentra fuera del tablero"
-        )
+            "The indicated position is out of the board")
 
     def test_get_piece_out_of_range_row(self):
         board = Board(for_test=True)
@@ -66,8 +65,7 @@ class TestBoard(unittest.TestCase):
             board.get_piece(10, 0)
         self.assertEqual(
             exc.exception.message,
-            "La Fila indicada se encuentra fuera del tablero"
-        )
+            "The indicated row is out of the board")
 
     def test_get_piece_out_of_range_col(self):
         board = Board(for_test=True)
@@ -75,8 +73,7 @@ class TestBoard(unittest.TestCase):
             board.get_piece(0, 10)
         self.assertEqual(
             exc.exception.message,
-            "La Columna indicada se encuentra fuera del tablero"
-        )
+            "The indicated column is out of the board")
 
     # SET_PIECE METHOD
 
@@ -102,8 +99,7 @@ class TestBoard(unittest.TestCase):
             board.set_piece(10, 10,rook)
         self.assertEqual(
             exc.exception.message,
-            "La posicion indicada se encuentra fuera del tablero"
-        )
+            "The indicated position is out of the board")
 
     def test_set_piece_out_of_range_row(self):
         board=Board(for_test=True)
@@ -112,8 +108,7 @@ class TestBoard(unittest.TestCase):
             board.set_piece(10, 0,rook)
         self.assertEqual(
             exc.exception.message,
-            "La Fila indicada se encuentra fuera del tablero"
-        )
+            "The indicated row is out of the board")
     
     def test_set_piece_out_of_range_col(self):
         board=Board(for_test=True)
@@ -122,8 +117,7 @@ class TestBoard(unittest.TestCase):
             board.set_piece(0, 10,rook)
         self.assertEqual(
             exc.exception.message,
-            "La Columna indicada se encuentra fuera del tablero"
-        )
+            "The indicated column is out of the board")
 
     # PUTTING ROOKS ON THE BOARD WHEN STARTING THE GAME
 

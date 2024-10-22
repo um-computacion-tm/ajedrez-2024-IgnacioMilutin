@@ -6,6 +6,7 @@ from knight import Knight
 from rook import Rook
 from king import King
 from exceptions import InvalidMove,EmptyPosition,InvalidTurn,InvalidPawnChange
+from moves import all_moves
 
 class Chess:
     def __init__(self):
@@ -68,6 +69,7 @@ class Chess:
         if self.pawn_change_verification(to_row, to_col):
             self.pawn_change_rule(to_row, to_col)
         self.end_due_to_no_piece_rule()
+        #self.check_rule()
 
 
     # PAWN CHANGE INTO OTHER PIECE RULE
@@ -116,16 +118,20 @@ class Chess:
     # VERIFIES THE STATE OF DE CELL TO CHECK IF THE COLOR HAS NO PIECE
 
     def end_due_to_no_piece_verification(self):
-        return self.check_rows_for_end_due_to_no_piece() 
+        return self.search_rows_for_end_due_to_no_piece() 
 
-    def check_rows_for_end_due_to_no_piece(self):
+    # CHECKS EVERY ROW TO LOOK FOR A PIECE WITH THAT COLOR
+
+    def search_rows_for_end_due_to_no_piece(self):
         for row in range(8):
-            if self.check_cols_for_end_due_to_no_piece(row):
+            if self.search_cols_for_end_due_to_no_piece(row):
                 continue
             else: return False
         return True
                 
-    def check_cols_for_end_due_to_no_piece(self,row):
+    # CHECKS EVERY COLUMN TO LOOK FOR A PIECE WITH THAT COLOR            
+
+    def search_cols_for_end_due_to_no_piece(self,row):
         for col in range(8):
             if self.cell_evaluation(row, col):
                 continue
@@ -160,3 +166,44 @@ class Chess:
         answer=input(f'{self.__turn__} asked for a draw. Do yo want to end the game with a draw? (Yes/No): ')
         answer=answer.lower()
         return answer
+    
+    # CHECK RULE
+
+    def check_rule(self):
+        if self.check_verification():
+            print(f'{self.__turn__} you are in check. Make a move to get out of check or you will lose the game')
+            return True
+
+    def check_verification(self):
+        enemy_moves=all_moves(self.__board__,self.get_next_turn())
+        king=self.king_position(self.__turn__)
+        for move in enemy_moves:
+            if king==move:
+                return True
+        else: return False
+
+    # SEARCH FOR AN EXPECIFIC COLOR KINGS POSITION
+
+    def king_position(self,color):
+        position=self.king_position_search_in_row(color)
+        if position is not None:
+            return position
+
+    def king_position_search_in_row(self,color):
+        for row in range(8):
+            col=self.king_position_search_in_col(row,color)
+            if col is not False:
+                return (row,col)
+        return None
+
+    def king_position_search_in_col(self,row,color):
+        for col in range(8):
+            if self.king_position_cell_verification(row,col,color):
+                return col
+        return False
+
+    def king_position_cell_verification(self,row,col,color):
+        cell=self.__board__.get_piece(row,col)
+        if isinstance(cell,King) and cell.__color__==color:
+            return True
+        else: return False

@@ -54,7 +54,55 @@ Chess have several special moves. this are the following
 
 
 ### Thanks for reading the rules.
-### TO START THE GAME GO TO THE CLI FILE AND RUN THE FILE. THANKS AND ENJOY THE GAME
+
+## Play
+
+### Run and play with Docker
+
+Install docker for Debian
+
+```bash
+sudo apt install docker
+```
+
+Create a docker Image, the xyntax is as follows:
+
+```bash
+docker buildx build -t name_of_the_image path/to/Dockerfile
+```
+
+Anyway you can cd into the repo directory and use:
+
+```bash
+docker buildx build -t ajedrez-2024-ignaciomilutin .
+```
+Play and run tests
+
+```bash
+docker run -i ajedrez-2024-IgnacioMilutin
+```
+
+### Play local
+
+Clone the repository
+
+```bash
+git clone https://github.com/um-computacion-tm/ajedrez-2024-IgnacioMilutin.git
+```
+
+Install requirements
+
+```bash
+pip install -r requirements.txt 
+```
+
+Run the game
+
+```bash
+python -m cli
+```
+
+###  THANKS AND ENJOY THE GAME
 
 
 

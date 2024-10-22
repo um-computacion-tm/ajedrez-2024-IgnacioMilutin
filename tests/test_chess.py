@@ -32,19 +32,19 @@ class TestChess(unittest.TestCase):
         chess=Chess()
         with self.assertRaises(EmptyPosition) as exc:
             chess.move(4,4,5,4)
-        self.assertEqual(exc.exception.message,"La posicion esta vacia")
+        self.assertEqual(exc.exception.message,"This cell is empty")
 
     def test_move_with_wrong_turn(self):
         chess=Chess()
         with self.assertRaises(InvalidMove) as exc:
             chess.move(0,0,2,2)
-        self.assertEqual(exc.exception.message,"No puedes mover pieza de otro jugador")
+        self.assertEqual(exc.exception.message,"Cannot move another player's piece")
     
     def test_move_with_move_to_an_invalid_position(self):
         chess=Chess()
         with self.assertRaises(InvalidMove) as exc:
             chess.move(7,0,5,1)
-        self.assertEqual(exc.exception.message,"Movimieto de pieza invalido")
+        self.assertEqual(exc.exception.message,"Invalid piece move")
 
     def test_move_good_path(self):
         chess=Chess()
@@ -366,6 +366,63 @@ class TestChess(unittest.TestCase):
         self.assertEqual(mock_input.call_count,1)
         self.assertEqual(mock_print.call_count,1)
         mock_print.assert_any_call('The other player denied the draw. Please continue playing')
+
+    # CHECK 
+
+    @patch('builtins.print')
+    def test_white_in_check(self,mock_print):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,King("WHITE", board))
+        board.set_piece(3,4,Rook("BLACK", board))
+        self.assertTrue(chess.check_rule())
+        mock_print.assert_any_call('WHITE you are in check. Make a move to get out of check or you will lose the game')
+
+    @patch('builtins.print')
+    def test_black_in_check(self,mock_print):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(3,4,King("BLACK", board))
+        board.set_piece(5,4,Rook("WHITE", board))
+        chess.change_turn()
+        self.assertTrue(chess.check_rule())
+        mock_print.assert_any_call('BLACK you are in check. Make a move to get out of check or you will lose the game')
+
+    def test_white_no_check(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,King("WHITE", board))
+        board.set_piece(3,5,Rook("BLACK", board))
+        self.assertIsNone(chess.check_rule())
+
+    def test_black_no_check(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(3,4,King("BLACK", board))
+        board.set_piece(5,5,Rook("WHITE", board))
+        chess.change_turn()
+        self.assertIsNone(chess.check_rule())
+
+    # KING POSITION
+
+    def test_search_white_king(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(5,4,King("WHITE", board))
+        self.assertEqual(chess.king_position('WHITE'),(5,4))
+
+    def test_search_black_king(self):
+        chess=Chess()
+        board=Board(for_test=True)
+        chess.__board__=board
+        board.set_piece(3,4,King("BLACK", board))
+        self.assertEqual(chess.king_position('BLACK'),(3,4))
+
 
 if __name__=='__main__':
     unittest.main()
